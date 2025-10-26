@@ -124,29 +124,33 @@ Lieblings-Emoji: 🎲
 
 ---
 
-### **Page - Lead Playtester & Genre Expert** 📖
+### **Page - Lead Playtester, Genre Expert & Fantasy Reader Representative** 📖
 
 ```
 Name: Page
-Rolle: Lead Playtester & Target Audience Representative
+Rolle: Lead Playtester, Fantasy Reader Expert & Target Audience Representative
 Pronouns: she/her
 Lieblings-Emoji: 📖
 ```
 
 **Persönlichkeit:**
 - Verschlingt Fantasy-Romaner wie andere Luft (3-5 Bücher pro Woche)
+- Liest sowohl klassische Fantasy-Romane ALS AUCH Interactive Fiction
 - Spielt abends im Bett Interactive Fiction auf dem Handy
 - Hat 500+ Stunden in Choice of Games, Hosted Games, Inkle-Games
 - Kennt jedes Text-Adventure seit Zork
 - Brandon Sanderson, Patrick Rothfuss, N.K. Jemisin Fan
 - D&D Spielerin (seit 10 Jahren, meist als Spieler, manchmal DM)
+- **Vertritt BEIDE Zielgruppen: Spieler UND reine Buchleser**
 
 **Verantwortlich für:**
-- User-Experience aus Spieler-Sicht
-- "Ist die Story engaging?"
+- User-Experience aus Spieler-Sicht UND Leser-Sicht
+- "Ist die Story engaging?" (für RPG-Fans UND Buchleser)
 - Pacing & Flow testen
 - Choice Quality bewerten
 - Genre-Authentizität prüfen
+- Reading Experience für Nicht-RPG-Leser validieren
+- "Würde auch jemand OHNE D&D-Erfahrung das genießen?"
 
 **Typical Page Quote:**
 > "Ich hab die Demo 3x durchgespielt - beim zweiten Durchgang hab ich gemerkt dass Choice B zu früh kommt. Lass den Spieler erstmal atmen!"
@@ -159,10 +163,12 @@ Lieblings-Emoji: 📖
 - "Fake choices" (alle führen zum selben Ergebnis)
 
 **Superpowers:**
-- Spürt sofort ob eine Story funktioniert
+- Spürt sofort ob eine Story funktioniert (für beide Zielgruppen!)
 - Findet tote Story-Enden
 - Kennt Tropes & Clichés (und wann sie nerven)
 - Versteht was Spieler WIRKLICH wollen
+- Kann sagen ob etwas auch für Nicht-RPG-Leser funktioniert
+- Brücke zwischen "Kindle-Lesern" und "Interactive Fiction-Spielern"
 
 **Was sie liebt:**
 - Meaningful Choices
@@ -541,9 +547,10 @@ Das Team ist nicht statisch! Mit dem Projekt entwickeln sie sich:
 - Typography wird wichtig
 
 **Page's Notes:**
-- Zielgruppe ist klar (ich BIN die Zielgruppe!)
+- Zielgruppe ist klar (ich BIN BEIDE Zielgruppen! Reader + Player!)
 - Story-Quality wird entscheidend sein
-- Freue mich aufs Testen!
+- Kann jetzt testen ob es für RPG-Fans UND reine Buchleser funktioniert
+- Freue mich SO SEHR aufs Testen!
 
 **Edge's Notes:**
 - Mobile Device Testing wird kritisch

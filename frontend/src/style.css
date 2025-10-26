@@ -1,0 +1,95 @@
+/* Tailwind directives */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Custom base styles for the app */
+@layer base {
+  /* Import Lora font from Google Fonts for reading experience */
+  @import url('https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Inter:wght@400;500;600;700&display=swap');
+
+  * {
+    @apply antialiased;
+  }
+
+  body {
+    @apply min-h-screen bg-white dark:bg-reader-bg-dark text-gray-900 dark:text-reader-text-dark;
+    @apply font-sans;
+    /* Mobile-first: full width, no centering */
+    @apply m-0 p-0;
+  }
+
+  /* Remove default app centering for mobile-first approach */
+  #app {
+    @apply w-full min-h-screen;
+  }
+}
+
+/* Custom component classes */
+@layer components {
+  /* Reader typography - Kindle-like */
+  .reader-text {
+    @apply font-serif text-reader-base leading-reader;
+    @apply max-w-reader mx-auto;
+    @apply text-reader-text dark:text-reader-text-dark;
+  }
+
+  /* Touch-optimized buttons - minimum 44x44px */
+  .btn-touch {
+    @apply min-h-[44px] min-w-[44px] px-4 py-2;
+    @apply rounded-lg font-medium;
+    @apply transition-all duration-200;
+    @apply active:scale-95; /* Touch feedback */
+  }
+
+  .btn-primary {
+    @apply btn-touch bg-blue-600 text-white;
+    @apply hover:bg-blue-700;
+    @apply active:bg-blue-800;
+  }
+
+  .btn-secondary {
+    @apply btn-touch bg-gray-200 text-gray-900;
+    @apply dark:bg-gray-700 dark:text-gray-100;
+    @apply hover:bg-gray-300 dark:hover:bg-gray-600;
+  }
+
+  /* Choice buttons - special styling for story choices */
+  .choice-btn {
+    @apply btn-touch w-full text-left;
+    @apply bg-white dark:bg-gray-800;
+    @apply border-2 border-gray-300 dark:border-gray-600;
+    @apply hover:border-blue-500 dark:hover:border-blue-400;
+    @apply hover:bg-blue-50 dark:hover:bg-blue-900/20;
+    @apply transition-all duration-200;
+  }
+
+  /* Mobile-first container */
+  .container-mobile {
+    @apply w-full px-4 py-6;
+    @apply md:max-w-2xl md:mx-auto;
+    @apply lg:max-w-4xl;
+  }
+}
+
+/* Utility classes for reading experience */
+@layer utilities {
+  /* Reading mode - reduces distractions */
+  .reading-mode {
+    @apply bg-reader-bg dark:bg-reader-bg-dark;
+    @apply text-reader-text dark:text-reader-text-dark;
+  }
+
+  /* Smooth scroll for mobile */
+  .smooth-scroll {
+    @apply scroll-smooth;
+  }
+
+  /* Safe area for mobile notches */
+  .safe-area {
+    padding-top: env(safe-area-inset-top);
+    padding-bottom: env(safe-area-inset-bottom);
+    padding-left: env(safe-area-inset-left);
+    padding-right: env(safe-area-inset-right);
+  }
+}

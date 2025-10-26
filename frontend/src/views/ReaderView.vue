@@ -15,25 +15,8 @@
         </button>
       </header>
 
-      <!-- Story Reader Content -->
-      <div v-if="!isStoryLoaded" class="text-center py-16">
-        <h2 class="text-2xl font-bold mb-4">No Story Loaded</h2>
-        <p class="mb-6 text-gray-600 dark:text-gray-400">
-          Import a story JSON to start playing
-        </p>
-
-        <div class="max-w-md mx-auto">
-          <label class="btn-primary cursor-pointer inline-block">
-            📁 Import Story JSON
-            <input
-              type="file"
-              @change="handleFileImport"
-              accept=".json"
-              class="hidden"
-            />
-          </label>
-        </div>
-      </div>
+      <!-- Story Library (when no story is loaded) -->
+      <StoryLibrary v-if="!isStoryLoaded" />
 
       <!-- Story Display (we'll enhance this later) -->
       <div v-else class="reader-content">
@@ -68,25 +51,9 @@
 <script setup>
 import { storeToRefs } from 'pinia'
 import { useStoryStore } from '../stores/story'
+import StoryLibrary from '../components/StoryLibrary.vue'
 
 const storyStore = useStoryStore()
 const { campaign, currentNode, isStoryLoaded } = storeToRefs(storyStore)
-const { chooseOption, loadCampaign, resetStory } = storyStore
-
-// Handle file import
-function handleFileImport(event) {
-  const file = event.target.files[0]
-  if (!file) return
-
-  const reader = new FileReader()
-  reader.onload = (e) => {
-    try {
-      const campaignData = JSON.parse(e.target.result)
-      loadCampaign(campaignData)
-    } catch (error) {
-      alert('Failed to import story: ' + error.message)
-    }
-  }
-  reader.readAsText(file)
-}
+const { chooseOption, resetStory } = storyStore
 </script>

@@ -20,12 +20,15 @@ Eine Engine, mit der **Autoren und Game Master** interaktive Fantasy-RPG-Kampagn
 
 ### Pflichtlektüre (in dieser Reihenfolge):
 1. **[CORE_PRINCIPLES.md](./CORE_PRINCIPLES.md)** - Die unverrückbaren Prinzipien (IMMER zuerst lesen!)
-2. **[VISION.md](./VISION.md)** - Die nicht-technische Vision
-3. **[TECHNICAL_CONCEPT.md](./TECHNICAL_CONCEPT.md)** - Technische Architektur & Datenmodell
-4. **[MVP_ROADMAP.md](./MVP_ROADMAP.md)** - Konkrete Entwicklungs-Milestones
+2. **[TEAM.md](./TEAM.md)** - 🎲 Meet the Team: Syntax, Serif & Dice (NUTZE DAS TEAM!)
+3. **[VISION.md](./VISION.md)** - Die nicht-technische Vision
+4. **[TECHNICAL_CONCEPT.md](./TECHNICAL_CONCEPT.md)** - Technische Architektur & Datenmodell
+5. **[MVP_ROADMAP.md](./MVP_ROADMAP.md)** - Konkrete Entwicklungs-Milestones
 
 ### Wichtig für zukünftige Entwickler/Claude-Instanzen:
 - Lies **CORE_PRINCIPLES.md** vor JEDER Entscheidung
+- Lies **TEAM.md** und NUTZE das Team (Syntax, Serif, Dice)
+- Antworte ALS das Team - verschiedene Perspektiven zeigen
 - Nutze den **Fokus-Test** (5 Fragen) vor jedem neuen Feature
 - Halte dich an die **MVP Roadmap** - kein Scope Creep!
 
@@ -216,9 +219,10 @@ Eine lebendige Community von tausenden Autoren, Game Mastern und Spielern die:
 
 ### Context für neue Sessions:
 1. Lies immer zuerst **CORE_PRINCIPLES.md**
-2. Prüfe **MVP_ROADMAP.md** für aktuellen Status
-3. Halte dich an die **Definition of Done** im Roadmap
-4. Kein Feature Creep - MVP first!
+2. Lies **TEAM.md** und werde Syntax, Serif & Dice 🎲
+3. Prüfe **MVP_ROADMAP.md** für aktuellen Status
+4. Halte dich an die **Definition of Done** im Roadmap
+5. Kein Feature Creep - MVP first!
 
 ### Bei Unsicherheit:
 - Frage den User, statt anzunehmen
@@ -235,7 +239,8 @@ Eine lebendige Community von tausenden Autoren, Game Mastern und Spielern die:
 
 ## 🔗 Quick Links
 
-- **Core Principles:** [CORE_PRINCIPLES.md](./CORE_PRINCIPLES.md)
+- **Core Principles:** [CORE_PRINCIPLES.md](./CORE_PRINCIPLES.md) ⭐
+- **The Team:** [TEAM.md](./TEAM.md) 🎲 ← **START HERE for Claude instances!**
 - **Vision:** [VISION.md](./VISION.md)
 - **Tech Concept:** [TECHNICAL_CONCEPT.md](./TECHNICAL_CONCEPT.md)
 - **MVP Roadmap:** [MVP_ROADMAP.md](./MVP_ROADMAP.md)

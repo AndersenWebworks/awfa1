@@ -1,0 +1,173 @@
+{
+  "id": "demo_001",
+  "title": "Die verborgene Kammer",
+  "author": "Team Syntax, Serif & Dice",
+  "version": "1.0.0",
+  "metadata": {
+    "description": "Eine kurze Demo-Story um die Engine zu testen",
+    "genre": ["fantasy", "adventure"],
+    "tags": ["demo", "tutorial"]
+  },
+  "startNodeId": "start",
+  "nodes": [
+    {
+      "id": "start",
+      "type": "story",
+      "content": {
+        "text": "Du stehst vor einer alten, verwitterten Tür tief im Keller des vergessenen Turms. Spinnweben hängen schwer in den Ecken, und ein kalter Luftzug streicht durch den Gang.\n\nDurch die Ritzen der Tür schimmert ein schwaches, grünliches Licht. Du hörst ein leises Summen – magisch, eindeutig.\n\nWas tust du?"
+      },
+      "choices": [
+        {
+          "id": "choice_knock",
+          "text": "Vorsichtig an die Tür klopfen",
+          "targetNode": "knock"
+        },
+        {
+          "id": "choice_open",
+          "text": "Die Tür einfach öffnen",
+          "targetNode": "open"
+        },
+        {
+          "id": "choice_listen",
+          "text": "Erst lauschen, was dahinter ist",
+          "targetNode": "listen"
+        }
+      ]
+    },
+    {
+      "id": "knock",
+      "type": "story",
+      "content": {
+        "text": "Du klopfst dreimal leise an die Tür.\n\nFür einen Moment passiert nichts. Dann verstummt das Summen abrupt. Stille.\n\nPlötzlich öffnet sich die Tür von selbst – langsam, quietschend. Das grünliche Licht wird heller und hüllt dich in einen warmen Schimmer.\n\nEine körperlose Stimme flüstert: \"Wer höflich fragt, dem wird geöffnet. Tritt ein, Reisender.\"\n\nVor dir liegt eine Kammer voller alter Bücher, glitzernder Artefakte und einem Kristall, der in der Mitte schwebt."
+      },
+      "choices": [
+        {
+          "id": "choice_enter_peaceful",
+          "text": "Die Kammer betreten",
+          "targetNode": "chamber_peaceful"
+        }
+      ]
+    },
+    {
+      "id": "open",
+      "type": "story",
+      "content": {
+        "text": "Du greifst nach dem Türgriff und drückst entschlossen.\n\nDie Tür fliegt auf – und ein greller Blitz schießt heraus! Du wirst rückwärts gegen die Wand geschleudert.\n\nAls du benommen aufstehst, siehst du die Kammer. Das grünliche Licht pulsiert aggressiv. Auf dem Boden liegt eine Inschrift:\n\n\"Nur die Geduldigen sind würdig.\"\n\nDu kannst die Kammer betreten, aber etwas sagt dir, dass du vorsichtiger hättest sein sollen."
+      },
+      "choices": [
+        {
+          "id": "choice_enter_rough",
+          "text": "Die Kammer betreten",
+          "targetNode": "chamber_rough"
+        }
+      ]
+    },
+    {
+      "id": "listen",
+      "type": "story",
+      "content": {
+        "text": "Du legst dein Ohr an die Tür.\n\nDas Summen wird klarer – es ist kein Zauber, es ist... Gesang? Eine melodische, alte Stimme singt in einer Sprache, die du nicht verstehst.\n\nDann, plötzlich: \"Ich weiß, dass du da bist. Hast du Angst, oder bist du nur weise?\"\n\nDie Stimme klingt nicht bedrohlich – eher neugierig.\n\nWas machst du?"
+      },
+      "choices": [
+        {
+          "id": "choice_answer",
+          "text": "\"Ich bin vorsichtig, nicht ängstlich.\"",
+          "targetNode": "answer"
+        },
+        {
+          "id": "choice_open_after",
+          "text": "Die Tür öffnen",
+          "targetNode": "open_after_listen"
+        }
+      ]
+    },
+    {
+      "id": "answer",
+      "type": "story",
+      "content": {
+        "text": "\"Ich bin vorsichtig, nicht ängstlich,\" antwortest du durch die Tür.\n\nEin warmes Lachen ertönt. \"Eine gute Antwort! Vorsicht ist die Tugend der Überlebenden.\"\n\nDie Tür öffnet sich sanft, und ein alter Magier steht vor dir. Sein Bart ist lang und weiß, seine Augen funkeln amüsiert.\n\n\"Willkommen, Reisender. Nicht viele nehmen sich die Zeit zu lauschen. Komm, ich habe etwas für dich.\"\n\nEr führt dich in die Kammer. Sie ist voller Wunder – und der Magier überreicht dir ein altes, ledergebundenes Buch.\n\n\"Für die Weisen,\" sagt er lächelnd."
+      },
+      "choices": [
+        {
+          "id": "choice_best_ending",
+          "text": "Das Buch annehmen",
+          "targetNode": "best_ending"
+        }
+      ]
+    },
+    {
+      "id": "open_after_listen",
+      "type": "story",
+      "content": {
+        "text": "Du entscheidest dich, die Tür zu öffnen.\n\nSie öffnet sich leicht, und vor dir steht ein alter Magier. Er lächelt.\n\n\"Ah, du hast gelauscht! Klug. Aber warum nicht geantwortet? Egal – du bist höflich genug. Tritt ein.\"\n\nDie Kammer ist erfüllt von magischen Artefakten. Der Magier zeigt dir seine Sammlung.\n\n\"Nimm dir ein Andenken,\" sagt er großzügig."
+      },
+      "choices": [
+        {
+          "id": "choice_good_ending",
+          "text": "Ein Artefakt auswählen",
+          "targetNode": "good_ending"
+        }
+      ]
+    },
+    {
+      "id": "chamber_peaceful",
+      "type": "story",
+      "content": {
+        "text": "Du trittst in die Kammer.\n\nDer schwebende Kristall pulsiert sanft. Du fühlst eine tiefe Ruhe. Die Bücher flüstern alte Geschichten, und die Artefakte glitzern einladend.\n\nEine Stimme – dieselbe wie vorher – sagt: \"Du hast Respekt gezeigt. Wähle ein Geschenk.\"\n\nVor dir erscheinen drei Gegenstände:\n- Ein Amulett der Weisheit\n- Ein Dolch aus Mondlicht\n- Eine Karte zu verborgenen Schätzen"
+      },
+      "choices": [
+        {
+          "id": "choice_peaceful_end",
+          "text": "Das Amulett nehmen und gehen",
+          "targetNode": "peaceful_ending"
+        }
+      ]
+    },
+    {
+      "id": "chamber_rough",
+      "type": "story",
+      "content": {
+        "text": "Du betrittst die Kammer vorsichtig.\n\nDas Licht pulsiert noch immer aggressiv. Die Artefakte scheinen dich zu beobachten – misstrauisch.\n\nEin Schatten formt sich vor dir. \"Du bist ungeduldig. Aber du bist hier. Was suchst du?\"\n\nDie Stimme klingt streng."
+      },
+      "choices": [
+        {
+          "id": "choice_rough_end",
+          "text": "\"Ich suche Wissen.\"",
+          "targetNode": "rough_ending"
+        }
+      ]
+    },
+    {
+      "id": "best_ending",
+      "type": "story",
+      "content": {
+        "text": "Du nimmst das Buch dankbar an.\n\n\"Dieses Buch,\" sagt der Magier, \"enthält Geschichten der größten Helden dieser Welt. Aber es schreibt auch deine Geschichte – denn du hast heute Weisheit bewiesen.\"\n\nEr lächelt warm. \"Geh nun, Reisender. Und denk daran: Die größten Schätze gehören denen, die zuhören.\"\n\nDu verlässt die Kammer mit dem Buch in der Hand.\n\n**ENDE - Der Weise (Bestes Ende)**"
+      },
+      "choices": []
+    },
+    {
+      "id": "good_ending",
+      "type": "story",
+      "content": {
+        "text": "Du wählst ein glitzerndes Amulett aus.\n\nDer Magier nickt anerkennend. \"Eine gute Wahl. Dieses Amulett wird dich vor Täuschungen schützen.\"\n\nEr geleitet dich zur Tür. \"Geh nun, und möge dein Weg sicher sein.\"\n\nDu verlässt den Turm mit einem magischen Geschenk.\n\n**ENDE - Der Respektvolle (Gutes Ende)**"
+      },
+      "choices": []
+    },
+    {
+      "id": "peaceful_ending",
+      "type": "story",
+      "content": {
+        "text": "Du nimmst das Amulett der Weisheit.\n\nEs fühlt sich warm an in deiner Hand. Das Summen verstummt, und die Kammer beginnt zu verblassen.\n\n\"Du hast gewählt,\" flüstert die Stimme. \"Geh mit Weisheit.\"\n\nDu findest dich außerhalb des Turms wieder – mit dem Amulett in der Hand.\n\n**ENDE - Der Höfliche (Gutes Ende)**"
+      },
+      "choices": []
+    },
+    {
+      "id": "rough_ending",
+      "type": "story",
+      "content": {
+        "text": "\"Ich suche Wissen,\" sagst du.\n\nDer Schatten zögert. Dann nickt er. \"Wenigstens bist du ehrlich. Nimm dies.\"\n\nEin altes Buch fällt vor deine Füße. Es ist abgenutzt und staubig – aber wertvoll.\n\n\"Geh,\" sagt die Stimme. \"Und lerne Geduld.\"\n\nDu verlässt die Kammer mit dem Buch.\n\n**ENDE - Der Ungeduldige (Neutrales Ende)**"
+      },
+      "choices": []
+    }
+  ]
+}

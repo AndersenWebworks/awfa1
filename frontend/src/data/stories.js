@@ -7,8 +7,9 @@
  * - User-imported (from JSON file)
  */
 
-// Import the demo story
+// Import stories
 import demoStory from '../../public/demo-story.json'
+import dragonStory from '../../public/page-dragon-story.json'
 
 export const AVAILABLE_STORIES = [
   {
@@ -21,7 +22,7 @@ export const AVAILABLE_STORIES = [
     difficulty: 'Einfach',
     estimatedPlaytime: '10-15 Min',
     endings: 3,
-    coverImage: null, // TODO: Add cover images later
+    coverImage: null,
 
     // Embedded story data
     data: demoStory,
@@ -34,12 +35,28 @@ export const AVAILABLE_STORIES = [
     }
   },
 
-  // Future stories will be added here
-  // {
-  //   id: 'story_002',
-  //   title: 'Der verfluchte Wald',
-  //   ...
-  // }
+  {
+    id: 'page_dragon_story_001',
+    title: 'Der letzte Drache von Aethermoor',
+    author: 'Page (Lead Playtester)',
+    description: 'Der Nebel lichtet sich, als du den Gipfel des Mondberges erreichst. Vor dir liegt der letzte Drache. Eine emotional tiefe Geschichte über Freundschaft, schwere Entscheidungen und das Ende einer Ära.',
+    genre: ['Fantasy', 'Emotional', 'Dragons'],
+    tags: ['dragons', 'choices-matter', 'emotional', 'page-original'],
+    difficulty: 'Mittel',
+    estimatedPlaytime: '20-30 Min',
+    endings: 3,
+    coverImage: null,
+
+    // Embedded story data
+    data: dragonStory,
+
+    // Stats for display
+    stats: {
+      nodes: 12,
+      choices: 18,
+      endings: 3,
+    }
+  },
 ]
 
 /**

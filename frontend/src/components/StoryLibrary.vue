@@ -189,7 +189,7 @@ function editStory(story) {
 function deleteStory(story) {
   if (!story.isPersonal) return
 
-  if (confirm(`Story "${story.title}" wirklich löschen?`)) {
+  if (confirm(`Geschichte "${story.title}" wirklich löschen?`)) {
     personalStoriesStore.deletePersonalStory(story.id)
   }
 }
@@ -211,7 +211,7 @@ function copyAsTemplate(story) {
     const importedStory = personalStoriesStore.importStory(templateCopy)
 
     // Show success message
-    alert(`Story "${story.title}" als Template kopiert!\n\nDu findest sie jetzt in "Meine Stories" und kannst sie bearbeiten.`)
+    alert(`Geschichte "${story.title}" als Vorlage kopiert!\n\nSie finden sie nun in "Meine Geschichten" und können sie bearbeiten.`)
 
     // Switch to personal tab to show copied story
     activeTab.value = 'personal'
@@ -234,7 +234,7 @@ function handleFileImport(event) {
       const importedStory = personalStoriesStore.importStory(campaignData)
 
       // Show success message
-      alert(`Story "${importedStory.title}" erfolgreich importiert!`)
+      alert(`Geschichte "${importedStory.title}" erfolgreich importiert!`)
 
       // Switch to personal tab to show imported story
       activeTab.value = 'personal'

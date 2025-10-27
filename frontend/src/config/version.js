@@ -16,14 +16,14 @@ export const REPO_URL = 'https://github.com/AndersenWebworks/awfa1'
  */
 export function logVersionInfo() {
   console.log(
-    `%c🎮 ${APP_NAME}%c\n` +
-    `%c📦 Version: ${VERSION}%c\n` +
-    `%c🕐 Build: ${BUILD_DATE}%c\n` +
-    `%c🔗 ${REPO_URL}%c`,
-    'color: #3b82f6; font-size: 16px; font-weight: bold;', '',
-    'color: #10b981; font-weight: bold;', '',
-    'color: #8b5cf6; font-weight: bold;', '',
-    'color: #6366f1; font-weight: bold;', ''
+    `%c${APP_NAME}%c\n` +
+    `%cVersion: ${VERSION}%c\n` +
+    `%cBuild: ${BUILD_DATE}%c\n` +
+    `%c${REPO_URL}%c`,
+    'color: #8B7355; font-size: 16px; font-weight: bold;', '',
+    'color: #6B5D52; font-weight: bold;', '',
+    'color: #A67C52; font-weight: bold;', '',
+    'color: #8B7355; font-weight: bold;', ''
   )
 }
 

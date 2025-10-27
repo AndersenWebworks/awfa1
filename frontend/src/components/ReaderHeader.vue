@@ -48,7 +48,7 @@ const props = defineProps({
 
 // Computed properties
 const storyTitle = computed(() => {
-  return storyStore.campaign?.title || 'Story'
+  return storyStore.campaign?.title || 'Geschichte'
 })
 
 const totalNodes = computed(() => {

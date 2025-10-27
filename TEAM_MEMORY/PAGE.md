@@ -390,3 +390,51 @@ When I'm confused, I document:
 **Last Updated:** 2025-10-26
 **Status:** Testing, creating, advocating for users
 **Next Update:** End of Day 2
+
+## Day 2 Update (2025-10-27)
+
+**My Testing:**
+- Tested cache-busting fix (had to hard refresh!)
+- Tested Literary Design während Currywurst-Pause
+- Full walkthrough after all changes
+- Gave feedback to Edge informal (not 14:00 interview)
+
+**My Honest Feedback:**
+- "Fühlt sich jetzt WIRKLICH an wie ein E-Book!" ✅
+- "Viel schöner - sehr edel!" ✅
+- "∎ Symbol am Ende passt perfekt" ✅
+- "Sepia Farben nicht zu grell" ✅
+- "Geschichten lesen' macht mehr Sinn als 'Spielen'" ✅
+
+**"Hä?"-Moments:** 
+NONE! Everything made sense! 🎉
+
+**My Favorite Changes:**
+1. No emojis - sieht professioneller aus
+2. "Sie" instead of "Du" - fühlt sich respektvoll an
+3. Book colors - warm and cozy
+4. Serif fonts - angenehm zu lesen
+5. "Bibliothek" - klingt edel
+
+**User Experience:**
+- Mobile (iPhone): Perfect touch targets, smooth
+- Reading flow: Like Kindle, really!
+- Navigation: Clear, intuitive
+- Ending: Satisfying with ∎ symbol
+
+**Learnings:**
+- Design matters MORE than I thought
+- Formal language can feel welcoming (not stiff!)
+- Emojis can be distracting
+- Literary ≠ boring
+
+**Tomorrow:**
+- Create more test stories
+- Maybe write "Page's Dragon Story v2"?
+- Test with friends outside the team
+
+---
+
+**Last Updated:** 2025-10-27
+**Status:** Testing, loving the new design, excited!
+**Next Update:** End of Day 3

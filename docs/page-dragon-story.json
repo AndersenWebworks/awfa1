@@ -1,0 +1,196 @@
+{
+  "id": "page_dragon_story_001",
+  "title": "Der letzte Drache von Aethermoor",
+  "author": "Page (Lead Playtester)",
+  "version": "1.0.0",
+  "metadata": {
+    "description": "Eine emotional tiefe Geschichte über den letzten Drachen, Freundschaft und schwere Entscheidungen. Pages erste selbst geschriebene Story!",
+    "genre": ["fantasy", "emotional", "dragons"],
+    "difficulty": "medium",
+    "estimatedPlaytime": "20-30 minutes",
+    "tags": ["dragons", "choices-matter", "emotional", "page-original"]
+  },
+  "startNodeId": "start",
+  "nodes": [
+    {
+      "id": "start",
+      "type": "story",
+      "content": {
+        "text": "Der Nebel lichtet sich, als du den Gipfel des Mondberges erreichst.\n\nVor dir, zwischen uralten Ruinen, liegt ein Drache. Nicht die mächtige Bestie aus den Legenden – sondern ein altes, müdes Wesen. Seine Schuppen schimmern matt im Mondlicht, und seine goldenen Augen betrachten dich ohne Furcht.\n\n\"Ein Mensch,\" raunt er mit einer Stimme wie fernes Donnergrollen. \"Nach all den Jahren... endlich.\"\n\nDu spürst, dass dies kein gewöhnlicher Moment ist. Dies ist der letzte Drache. Und er hat auf dich gewartet."
+      },
+      "choices": [
+        {
+          "id": "choice_approach",
+          "text": "Vorsichtig näherkommen",
+          "targetNode": "approach"
+        },
+        {
+          "id": "choice_speak",
+          "text": "\"Warum hast du auf mich gewartet?\"",
+          "targetNode": "speak"
+        },
+        {
+          "id": "choice_observe",
+          "text": "Erst beobachten, nicht sprechen",
+          "targetNode": "observe"
+        }
+      ]
+    },
+    {
+      "id": "approach",
+      "type": "story",
+      "content": {
+        "text": "Du gehst langsam auf den Drachen zu. Mit jedem Schritt spürst du die Magie, die von ihm ausgeht – nicht bedrohlich, sondern... traurig?\n\nDer Drache hebt seinen massiven Kopf und lächelt – soweit ein Drache lächeln kann.\n\n\"Mutig,\" sagt er leise. \"Die meisten wären vor Furcht erstarrt. Aber du... du bist anders. Setz dich zu mir, junger Mensch. Ich habe eine Geschichte zu erzählen. Meine letzte.\""
+      },
+      "choices": [
+        {
+          "id": "choice_sit",
+          "text": "Sich neben ihn setzen",
+          "targetNode": "story_begins"
+        },
+        {
+          "id": "choice_ask_why",
+          "text": "\"Warum deine letzte?\"",
+          "targetNode": "why_last"
+        }
+      ]
+    },
+    {
+      "id": "speak",
+      "type": "story",
+      "content": {
+        "text": "\"Warum hast du auf mich gewartet?\" fragst du.\n\nDer Drache seufzt – ein Laut so tief, dass du ihn in deiner Brust spürst.\n\n\"Weil ich eine Entscheidung treffen muss. Und ich... ich kann sie nicht allein treffen. Nicht nach tausend Jahren. Ich brauche jemanden, der die Welt noch mit frischen Augen sieht.\"\n\nEr richtet seinen Blick auf dich, und du siehst darin Jahrtausende von Erinnerungen.\n\n\"Ich bin der Letzte meiner Art. Und ich trage ein Geheimnis, das die Welt verändern könnte.\""
+      },
+      "choices": [
+        {
+          "id": "choice_what_secret",
+          "text": "\"Was für ein Geheimnis?\"",
+          "targetNode": "the_secret"
+        },
+        {
+          "id": "choice_why_me",
+          "text": "\"Warum ausgerechnet ich?\"",
+          "targetNode": "why_you"
+        }
+      ]
+    },
+    {
+      "id": "observe",
+      "type": "story",
+      "content": {
+        "text": "Du bleibst still stehen und beobachtest.\n\nDer Drache scheint das zu respektieren. Er schließt seine Augen und atmet tief. Mit jedem Atemzug scheint ein schwaches, goldenes Licht von ihm auszugehen.\n\nNach einer Weile öffnet er die Augen wieder.\n\n\"Weise,\" murmelt er. \"Zu beobachten, bevor man handelt. Du bist definitiv der Richtige. Komm näher, Stiller Beobachter. Es ist Zeit, dass ich dir zeige, warum ich hier bin.\""
+      },
+      "choices": [
+        {
+          "id": "choice_come_closer",
+          "text": "Näher kommen",
+          "targetNode": "story_begins"
+        }
+      ]
+    },
+    {
+      "id": "story_begins",
+      "type": "story",
+      "content": {
+        "text": "Du setzt dich neben den Drachen. Seine Wärme hüllt dich ein wie eine Decke.\n\n\"Vor tausend Jahren,\" beginnt er, \"gab es hunderte von uns. Wir flogen über diese Welt, Hüter der alten Magie. Aber dann... kamen die Kriege. Menschen gegen Drachen. Drachen gegen Menschen. Und am Ende... verloren beide.\"\n\nEr atmet schwer.\n\n\"Ich bin der Letzte. Und in mir... in mir ruht die gesamte Magie aller Drachen. Wenn ich sterbe, stirbt auch sie. Für immer.\"\n\nDann dreht er seinen Kopf zu dir.\n\n\"Aber es gibt einen anderen Weg...\""
+      },
+      "choices": [
+        {
+          "id": "choice_what_way",
+          "text": "\"Welchen Weg?\"",
+          "targetNode": "the_choice_reveal"
+        }
+      ]
+    },
+    {
+      "id": "why_last",
+      "type": "story",
+      "content": {
+        "text": "\"Warum deine letzte Geschichte?\" fragst du besorgt.\n\nDer Drache lächelt traurig.\n\n\"Weil ich sterbe, junger Mensch. Nicht heute, nicht morgen – aber bald. Ich spüre es. Tausend Jahre sind genug, selbst für einen Drachen.\"\n\nEr legt seinen Kopf auf den Boden, müde.\n\n\"Aber vor meinem Ende... muss ich eine Entscheidung treffen. Und ich brauche deine Hilfe dabei.\""
+      },
+      "choices": [
+        {
+          "id": "choice_help",
+          "text": "\"Ich werde dir helfen\"",
+          "targetNode": "the_choice_reveal"
+        }
+      ]
+    },
+    {
+      "id": "the_secret",
+      "type": "story",
+      "content": {
+        "text": "\"Was für ein Geheimnis?\" fragst du.\n\nDer Drache breitet langsam seine gewaltigen Flügel aus – und zwischen seinen Schuppen, unter seinem Herzen, siehst du es: ein leuchtendes, pulsendes Licht.\n\n\"Dies,\" sagt er ehrfürchtig, \"ist das Drachenherz. Die gesammelte Magie aller Drachen, die je gelebt haben. Wenn ich sterbe, verschwindet diese Magie für immer aus der Welt.\"\n\nEr faltet die Flügel wieder zusammen.\n\n\"Oder... ich gebe sie weiter. An dich.\""
+      },
+      "choices": [
+        {
+          "id": "choice_shocked",
+          "text": "\"An... mich?!\"",
+          "targetNode": "the_choice_reveal"
+        }
+      ]
+    },
+    {
+      "id": "why_you",
+      "type": "story",
+      "content": {
+        "text": "\"Warum ausgerechnet ich?\" fragst du, überwältigt.\n\n\"Weil,\" sagt der Drache sanft, \"du hierher gekommen bist. Nicht aus Gier, nicht aus Ruhm. Sondern aus Neugier. Aus Respekt. Ich habe auf jemanden wie dich gewartet.\"\n\nEr hustet, und Funken sprühen aus seinem Maul.\n\n\"Und weil die Zeit mir davonläuft. Ich muss entscheiden: Soll die Drachenmagie mit mir sterben? Oder soll sie... weiterleben?\""
+      },
+      "choices": [
+        {
+          "id": "choice_understand",
+          "text": "\"Ich verstehe...\"",
+          "targetNode": "the_choice_reveal"
+        }
+      ]
+    },
+    {
+      "id": "the_choice_reveal",
+      "type": "story",
+      "content": {
+        "text": "Der Drache richtet sich auf, so gut er kann.\n\n\"Ich gebe dir eine Wahl,\" sagt er ernst. \"Drei Wege liegen vor uns:\"\n\nEr hebt seine rechte Klaue:\n\"Erstens: Ich gebe dir meine Magie. Du wirst der neue Hüter der Drachen werden. Mächtig, aber allein. Mit der Last von tausend Jahren auf deinen Schultern.\"\n\nEr hebt seine linke Klaue:\n\"Zweitens: Ich lasse die Magie frei. Sie kehrt zur Welt zurück, wild und ungezähmt. Vielleicht werden neue Drachen geboren. Vielleicht auch nicht. Es wäre... Chaos.\"\n\nDann senkt er beide Klauen:\n\"Drittens: Die Magie stirbt mit mir. Die Welt bleibt, wie sie ist. Sicher. Vorhersehbar. Aber... etwas magischer wird sie nie wieder sein.\"\n\nEr sieht dich an, erwartungsvoll.\n\n\"Was wählst du?\""
+      },
+      "choices": [
+        {
+          "id": "choice_take_magic",
+          "text": "Die Magie annehmen (Hüter werden)",
+          "targetNode": "ending_guardian"
+        },
+        {
+          "id": "choice_free_magic",
+          "text": "Die Magie freilassen (Chaos riskieren)",
+          "targetNode": "ending_wild"
+        },
+        {
+          "id": "choice_let_die",
+          "text": "Die Magie sterben lassen (Sicherheit wählen)",
+          "targetNode": "ending_peace"
+        }
+      ]
+    },
+    {
+      "id": "ending_guardian",
+      "type": "story",
+      "content": {
+        "text": "\"Ich... ich nehme sie,\" sagst du, mit zitternder Stimme. \"Ich werde der Hüter sein.\"\n\nDer Drache lächelt – voller Stolz und Traurigkeit zugleich.\n\n\"Dann komm,\" sagt er leise.\n\nDu trittst vor, und er berührt deine Stirn mit seiner Schnauze. Ein Licht – warm, golden, überwältigend – strömt in dich hinein. Du spürst tausend Jahre Erinnerungen, tausend Drachen, tausend Geschichten.\n\nAls das Licht verblasst, liegt der Drache friedlich da. Sein Atem ist schwach, aber er lächelt.\n\n\"Lebe gut, junger Hüter,\" flüstert er. \"Die Drachen... leben in dir weiter.\"\n\nUnd dann ist er still.\n\nDu stehst am Gipfel des Mondberges, allein – aber nicht einsam. In dir lodert die Magie von tausend Drachen. Und mit ihr... die Verantwortung.\n\n**ENDE: Der Hüter** (Bittersweet Ending)\n\nDu hast Macht gewählt – und damit Einsamkeit. Die Drachen leben, aber nur in dir."
+      },
+      "choices": []
+    },
+    {
+      "id": "ending_wild",
+      "type": "story",
+      "content": {
+        "text": "\"Lass sie frei,\" sagst du entschlossen. \"Die Magie sollte nicht in einer Person gefangen sein. Lass sie zurück in die Welt.\"\n\nDer Drache nickt langsam.\n\n\"Mutig,\" raunt er. \"Und riskant. Aber... vielleicht ist es das, was die Welt braucht.\"\n\nEr hebt seinen Kopf zum Himmel und brüllt – ein letztes, gewaltiges Brüllen, das über die ganze Welt hallt.\n\nAus seinem Maul, aus seinem Herzen, aus jeder Schuppe strömt goldenes Licht. Es steigt in den Himmel, teilt sich in tausend Funken, und fliegt in alle Himmelsrichtungen davon.\n\nDer Drache sinkt zu Boden, erschöpft aber zufrieden.\n\n\"Es ist getan,\" flüstert er. \"Was auch immer geschieht... es wird wild und wunderbar sein. Danke.\"\n\nUnd dann ist er still.\n\nJahre später hörst du Gerüchte: Seltsame Kreaturen in den Bergen. Magie, die unerwartet erwacht. Und manche schwören, sie hätten... Dracheneier gefunden.\n\nDie Welt hat sich verändert. Chaotisch, unvorhersehbar – aber lebendig.\n\n**ENDE: Die Wildnis** (Hopeful Chaos Ending)\n\nDu hast Chaos gewählt – und damit Hoffnung. Die Drachen könnten zurückkehren."
+      },
+      "choices": []
+    },
+    {
+      "id": "ending_peace",
+      "type": "story",
+      "content": {
+        "text": "\"Lass sie gehen,\" sagst du leise. \"Die Magie hatte ihre Zeit. Lass sie in Frieden sterben.\"\n\nDer Drache sieht dich lange an. Dann nickt er, langsam.\n\n\"Weise,\" murmelt er. \"Vielleicht weiser als ich. Zu wissen, wann etwas enden sollte...\"\n\nEr legt seinen Kopf neben dich und atmet tief.\n\n\"Dann werde ich der Letzte sein. Und wenn ich gehe... gehe ich in dem Wissen, dass die Welt weitermacht. Sicher. Ohne die Gefahren der alten Magie.\"\n\nEr schließt die Augen.\n\n\"Bleib bei mir,\" bittet er. \"Bis zum Ende.\"\n\nUnd du bleibst. Stunden vergehen. Der Drache atmet langsamer, langsamer... und dann gar nicht mehr.\n\nAls die Sonne aufgeht, löst sich sein Körper in goldenen Staub auf, der im Wind davonweht.\n\nDu steigst vom Berg herab. Die Welt ist dieselbe wie zuvor. Keine Magie mehr. Keine Drachen mehr. Aber vielleicht... vielleicht ist das OK.\n\nManchmal müssen Dinge enden, damit Neues beginnen kann.\n\n**ENDE: Der Frieden** (Peaceful, Melancholic Ending)\n\nDu hast Sicherheit gewählt – und damit Abschied. Die Drachen sind Geschichte."
+      },
+      "choices": []
+    }
+  ]
+}

@@ -245,5 +245,95 @@ When a new day/session starts:
 
 ---
 
-**Last Updated:** 2025-10-26
-**Status:** Active, in use daily
+## 🌙 END OF DAY ROUTINE (AUTOMATIC)
+
+**This routine MUST run at the end of EVERY work day, automatically.**
+
+**Time:** 17:00 - 18:00 (or when Boss says "Feierabend" / end of day)
+
+**MANDATORY STEPS (in order):**
+
+### 1. Edge: Final QA Report (if not done yet)
+- If Edge hasn't written his daily QA report yet, he writes it now
+- File: `QA_REPORTS/YYYY-MM-DD_QA_REPORT.md`
+- Commits to git
+
+### 2. Update ALL Team Memory Files
+**Each person updates their own memory file:**
+
+**EDGE.md** - Add to "Memory Log" section:
+- What happened today (date)
+- What he tested
+- What bugs he found
+- Page's feedback
+- New learnings (technical, UX, team, process)
+- Opinions formed today
+- Evolution/changes in perspective
+
+**SYNTAX.md** - Add to "Memory Log" section:
+- What he built today
+- Technical decisions made
+- What worked / didn't work
+- Pair programming with Serif
+- Code learnings
+- Architecture learnings
+- Evolution
+
+**SERIF.md** - Add to "Memory Log" section:
+- What she designed
+- UX decisions
+- Device testing results
+- Pair programming with Syntax
+- Typography/design learnings
+- Evolution
+
+**DICE.md** - Add to "Memory Log" section:
+- What he prioritized
+- Product decisions made
+- Tough calls
+- Learnings about team/process
+- Evolution
+
+**PAGE.md** - Add to "Memory Log" section:
+- What she tested
+- Stories created
+- "Hä?"-moments found
+- UX feedback given
+- Learnings
+- Evolution
+
+### 3. Create Daily Log
+**File:** `DAILY_LOGS/YYYY-MM-DD_DAY_XXX.md`
+
+Use TEMPLATE.md structure:
+- Session info
+- What was built
+- Key learnings
+- Challenges & solutions
+- Metrics
+- Team performance
+- Boss feedback
+- Next steps
+
+### 4. Commit Everything
+```bash
+git add TEAM_MEMORY/ QA_REPORTS/ DAILY_LOGS/
+git commit -m "📝 End of Day: Memory + Logs + QA Report [DATE]"
+git push
+```
+
+### 5. Team Sign-Off
+Each person says good night and heads home.
+
+---
+
+**IMPORTANT:** This routine runs **AUTOMATICALLY** at end of day.
+
+If Boss says "ab nach Hause" or "Feierabend" or it's naturally end of day (17:00-18:00), this routine MUST execute.
+
+**No exceptions. This is SACRED.**
+
+---
+
+**Last Updated:** 2025-10-27
+**Status:** Active, in use daily, AUTOMATIC

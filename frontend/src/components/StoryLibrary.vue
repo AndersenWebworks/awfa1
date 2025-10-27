@@ -95,13 +95,21 @@
             🗑️
           </button>
         </div>
-        <button
-          v-else
-          @click="playStory(story)"
-          class="btn-primary w-full"
-        >
-          ▶️ Story spielen
-        </button>
+        <div v-else class="flex gap-2">
+          <button
+            @click="playStory(story)"
+            class="btn-primary flex-1"
+          >
+            ▶️ Spielen
+          </button>
+          <button
+            @click="copyAsTemplate(story)"
+            class="btn-secondary flex-1"
+            title="Als Template in deine Library kopieren"
+          >
+            📋 Als Template
+          </button>
+        </div>
       </div>
     </div>
 
@@ -183,6 +191,32 @@ function deleteStory(story) {
 
   if (confirm(`Story "${story.title}" wirklich löschen?`)) {
     personalStoriesStore.deletePersonalStory(story.id)
+  }
+}
+
+// Copy public story as template to personal library
+function copyAsTemplate(story) {
+  if (story.isPersonal) return // Only for public stories
+
+  try {
+    // Create a copy with new ID
+    const templateCopy = {
+      ...story.data,
+      id: 'personal_' + Date.now(), // New unique ID
+      title: story.data.title + ' (Kopie)',
+      author: 'You', // User is now the author
+    }
+
+    // Import to personal stories
+    const importedStory = personalStoriesStore.importStory(templateCopy)
+
+    // Show success message
+    alert(`Story "${story.title}" als Template kopiert!\n\nDu findest sie jetzt in "Meine Stories" und kannst sie bearbeiten.`)
+
+    // Switch to personal tab to show copied story
+    activeTab.value = 'personal'
+  } catch (error) {
+    alert('Fehler beim Kopieren: ' + error.message)
   }
 }
 

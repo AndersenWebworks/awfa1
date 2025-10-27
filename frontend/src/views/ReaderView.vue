@@ -1,27 +1,14 @@
 <template>
   <div class="min-h-screen bg-reader-bg dark:bg-reader-bg-dark safe-area">
-    <div class="container-mobile">
-      <header class="flex justify-between items-center mb-8">
-        <router-link to="/" class="btn-secondary">
-          ← Home
-        </router-link>
+    <!-- Reader Header (sticky, always visible when story loaded) -->
+    <ReaderHeader v-if="isStoryLoaded" :show-progress="true" />
 
-        <button
-          v-if="isStoryLoaded"
-          @click="resetStory"
-          class="btn-secondary text-sm"
-        >
-          Reset Story
-        </button>
-      </header>
-
+    <div class="container-mobile" :class="{ 'pt-4': isStoryLoaded }">
       <!-- Story Library (when no story is loaded) -->
       <StoryLibrary v-if="!isStoryLoaded" />
 
-      <!-- Story Display (we'll enhance this later) -->
+      <!-- Story Display -->
       <div v-else class="reader-content">
-        <h2 class="text-2xl font-bold mb-8">{{ campaign.title }}</h2>
-
         <!-- Current Node Text -->
         <div class="reader-text mb-8" v-if="currentNode">
           <p class="whitespace-pre-wrap">{{ currentNode.content.text }}</p>
@@ -52,6 +39,7 @@
 import { storeToRefs } from 'pinia'
 import { useStoryStore } from '../stores/story'
 import StoryLibrary from '../components/StoryLibrary.vue'
+import ReaderHeader from '../components/ReaderHeader.vue'
 
 const storyStore = useStoryStore()
 const { campaign, currentNode, isStoryLoaded } = storeToRefs(storyStore)

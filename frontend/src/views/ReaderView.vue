@@ -26,10 +26,8 @@
           </button>
         </div>
 
-        <!-- Dead End Message -->
-        <div v-else-if="currentNode" class="text-center py-8">
-          <p class="text-gray-600 dark:text-gray-400">The End</p>
-        </div>
+        <!-- Ending Screen -->
+        <EndingScreen v-else-if="currentNode" :show-next-suggestion="false" />
       </div>
     </div>
   </div>
@@ -40,6 +38,7 @@ import { storeToRefs } from 'pinia'
 import { useStoryStore } from '../stores/story'
 import StoryLibrary from '../components/StoryLibrary.vue'
 import ReaderHeader from '../components/ReaderHeader.vue'
+import EndingScreen from '../components/EndingScreen.vue'
 
 const storyStore = useStoryStore()
 const { campaign, currentNode, isStoryLoaded } = storeToRefs(storyStore)

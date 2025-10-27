@@ -7,6 +7,34 @@
       </p>
     </div>
 
+    <!-- Tabs -->
+    <div class="mb-6 border-b-2 border-gray-200 dark:border-gray-700">
+      <div class="flex gap-4">
+        <button
+          @click="activeTab = 'all'"
+          :class="[
+            'pb-3 px-2 font-medium transition-colors btn-touch',
+            activeTab === 'all'
+              ? 'border-b-2 border-blue-500 text-blue-600 dark:text-blue-400'
+              : 'text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-200'
+          ]"
+        >
+          Alle Stories ({{ allStories.length }})
+        </button>
+        <button
+          @click="activeTab = 'personal'"
+          :class="[
+            'pb-3 px-2 font-medium transition-colors btn-touch',
+            activeTab === 'personal'
+              ? 'border-b-2 border-blue-500 text-blue-600 dark:text-blue-400'
+              : 'text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-200'
+          ]"
+        >
+          Meine Stories ({{ personalStoriesStore.personalStoriesCount }})
+        </button>
+      </div>
+    </div>
+
     <!-- Story Cards -->
     <div class="space-y-4">
       <div
@@ -45,8 +73,30 @@
           <span>📍 {{ story.stats.nodes }} Szenen</span>
         </div>
 
-        <!-- Play Button -->
+        <!-- Action Buttons -->
+        <div v-if="story.isPersonal" class="flex gap-2">
+          <button
+            @click="playStory(story)"
+            class="btn-primary flex-1"
+          >
+            ▶️ Spielen
+          </button>
+          <button
+            @click="editStory(story)"
+            class="btn-secondary flex-1"
+          >
+            ✏️ Bearbeiten
+          </button>
+          <button
+            @click="deleteStory(story)"
+            class="btn-secondary px-3"
+            title="Story löschen"
+          >
+            🗑️
+          </button>
+        </div>
         <button
+          v-else
           @click="playStory(story)"
           class="btn-primary w-full"
         >
@@ -75,14 +125,37 @@
 </template>
 
 <script setup>
-import { ref } from 'vue'
+import { ref, computed } from 'vue'
 import { useRouter } from 'vue-router'
 import { useStoryStore } from '../stores/story'
+import { useEditorStore } from '../stores/editor'
+import { usePersonalStoriesStore } from '../stores/personalStories'
 import { getAllStories } from '../data/stories'
 
 const router = useRouter()
 const storyStore = useStoryStore()
-const stories = ref(getAllStories())
+const editorStore = useEditorStore()
+const personalStoriesStore = usePersonalStoriesStore()
+
+// Tab state
+const activeTab = ref('all')
+
+// Get all public stories
+const publicStories = ref(getAllStories())
+
+// Combined stories based on active tab
+const allStories = computed(() => {
+  return [...publicStories.value, ...personalStoriesStore.personalStories]
+})
+
+const stories = computed(() => {
+  if (activeTab.value === 'all') {
+    return allStories.value
+  } else if (activeTab.value === 'personal') {
+    return personalStoriesStore.personalStories
+  }
+  return allStories.value
+})
 
 // Play a story from the library
 function playStory(story) {
@@ -91,6 +164,26 @@ function playStory(story) {
 
   // Navigate to reader
   router.push('/reader')
+}
+
+// Edit a personal story
+function editStory(story) {
+  if (!story.isPersonal) return
+
+  // Load story into editor
+  editorStore.loadCampaign(story.data)
+
+  // Navigate to editor
+  router.push('/editor')
+}
+
+// Delete a personal story
+function deleteStory(story) {
+  if (!story.isPersonal) return
+
+  if (confirm(`Story "${story.title}" wirklich löschen?`)) {
+    personalStoriesStore.deletePersonalStory(story.id)
+  }
 }
 
 // Handle custom JSON import
@@ -102,8 +195,15 @@ function handleFileImport(event) {
   reader.onload = (e) => {
     try {
       const campaignData = JSON.parse(e.target.result)
-      storyStore.loadCampaign(campaignData)
-      router.push('/reader')
+
+      // Import to personal stories
+      const importedStory = personalStoriesStore.importStory(campaignData)
+
+      // Show success message
+      alert(`Story "${importedStory.title}" erfolgreich importiert!`)
+
+      // Switch to personal tab to show imported story
+      activeTab.value = 'personal'
     } catch (error) {
       alert('Fehler beim Importieren: ' + error.message)
     }

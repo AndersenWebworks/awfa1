@@ -26,11 +26,18 @@ export default {
         'reader': '65ch', // Optimal line length for reading (50-75 chars)
       },
       colors: {
-        // Theme colors (we'll expand this later)
-        'reader-bg': '#FDFAF6', // Warm white for reading
-        'reader-text': '#2A2A2A', // Soft black
-        'reader-bg-dark': '#1A1A1A', // AMOLED black
-        'reader-text-dark': '#E5E5E5', // Soft white
+        // Book-like color palette (literary design)
+        'paper': '#FAF8F3',        // Warm cream (like book pages)
+        'ink': '#2D2520',          // Warm black (like ink)
+        'ink-light': '#6B5D52',    // Lighter ink
+        'sepia': '#8B7355',        // Aged ink
+        'sepia-light': '#A67C52',  // Gold-brown accent
+        'shadow': '#E8E3D8',       // Soft beige shadow
+        'divider': '#D4C4B0',      // Light sepia divider
+
+        // Dark mode (optional, for evening reading)
+        'paper-dark': '#1E1915',
+        'ink-dark': '#E8E3D8',
       }
     },
   },

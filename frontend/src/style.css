@@ -13,7 +13,7 @@
   }
 
   body {
-    @apply min-h-screen bg-white dark:bg-reader-bg-dark text-gray-900 dark:text-reader-text-dark;
+    @apply min-h-screen bg-paper dark:bg-paper-dark text-ink dark:text-ink-dark;
     @apply font-sans;
     /* Mobile-first: full width, no centering */
     @apply m-0 p-0;
@@ -29,9 +29,9 @@
 @layer components {
   /* Reader typography - Kindle-like */
   .reader-text {
-    @apply font-serif text-reader-base leading-reader;
-    @apply max-w-reader mx-auto;
-    @apply text-reader-text dark:text-reader-text-dark;
+    @apply font-serif text-lg leading-relaxed;
+    @apply max-w-2xl mx-auto;
+    @apply text-ink dark:text-ink-dark;
   }
 
   /* Touch-optimized buttons - minimum 44x44px */
@@ -43,25 +43,25 @@
   }
 
   .btn-primary {
-    @apply btn-touch bg-blue-600 text-white;
-    @apply hover:bg-blue-700;
-    @apply active:bg-blue-800;
+    @apply btn-touch bg-sepia text-paper;
+    @apply hover:bg-sepia-light;
+    @apply border border-sepia;
   }
 
   .btn-secondary {
-    @apply btn-touch bg-gray-200 text-gray-900;
-    @apply dark:bg-gray-700 dark:text-gray-100;
-    @apply hover:bg-gray-300 dark:hover:bg-gray-600;
+    @apply btn-touch bg-transparent text-sepia;
+    @apply border border-sepia/30;
+    @apply hover:border-sepia hover:bg-sepia/5;
   }
 
-  /* Choice buttons - special styling for story choices */
+  /* Choice buttons - like chapter selections in a book */
   .choice-btn {
-    @apply btn-touch w-full text-left;
-    @apply bg-white dark:bg-gray-800;
-    @apply border-2 border-gray-300 dark:border-gray-600;
-    @apply hover:border-blue-500 dark:hover:border-blue-400;
-    @apply hover:bg-blue-50 dark:hover:bg-blue-900/20;
+    @apply btn-touch w-full text-left font-serif;
+    @apply bg-paper dark:bg-paper-dark;
+    @apply border border-divider;
+    @apply hover:border-sepia hover:bg-shadow/30;
     @apply transition-all duration-200;
+    @apply text-ink dark:text-ink-dark;
   }
 
   /* Mobile-first container */
@@ -76,8 +76,8 @@
 @layer utilities {
   /* Reading mode - reduces distractions */
   .reading-mode {
-    @apply bg-reader-bg dark:bg-reader-bg-dark;
-    @apply text-reader-text dark:text-reader-text-dark;
+    @apply bg-paper dark:bg-paper-dark;
+    @apply text-ink dark:text-ink-dark;
   }
 
   /* Smooth scroll for mobile */

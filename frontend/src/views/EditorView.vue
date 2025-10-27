@@ -1,17 +1,17 @@
 <template>
-  <div class="min-h-screen bg-gray-50 dark:bg-gray-900 safe-area">
+  <div class="min-h-screen bg-paper dark:bg-paper-dark safe-area">
     <div class="container-mobile">
       <header class="flex justify-between items-center mb-8">
         <router-link to="/" class="btn-secondary">
-          ← Home
+          ← Zurück
         </router-link>
 
         <div class="flex gap-2">
           <button @click="handleExport" class="btn-secondary text-sm">
-            📥 Export
+            Export
           </button>
           <label class="btn-secondary text-sm cursor-pointer">
-            📤 Import
+            Import
             <input
               type="file"
               @change="handleImport"
@@ -24,18 +24,18 @@
 
       <!-- No Campaign State -->
       <div v-if="!isCampaignLoaded" class="text-center py-16">
-        <h2 class="text-2xl font-bold mb-4">Story Editor</h2>
-        <p class="mb-6 text-gray-600 dark:text-gray-400">
-          Create a new campaign or import an existing one
+        <h2 class="text-2xl font-serif mb-4 text-ink dark:text-ink-dark">Geschichten-Editor</h2>
+        <p class="mb-6 text-ink-light dark:text-ink-dark/70">
+          Erstellen Sie eine neue Geschichte oder laden Sie eine vorhandene
         </p>
 
         <div class="flex flex-col gap-3 max-w-md mx-auto">
           <button @click="createNewCampaign()" class="btn-primary">
-            ✨ Create New Campaign
+            Neue Geschichte erstellen
           </button>
 
           <label class="btn-secondary cursor-pointer">
-            📁 Import Campaign JSON
+            Geschichte importieren
             <input
               type="file"
               @change="handleImport"
@@ -49,16 +49,16 @@
       <!-- Campaign Loaded - Editor Interface -->
       <div v-else>
         <div class="mb-6">
-          <h1 class="text-3xl font-bold">{{ campaign.title }}</h1>
-          <p class="text-gray-600 dark:text-gray-400">{{ campaign.nodes.length }} nodes</p>
+          <h1 class="text-3xl font-serif text-ink dark:text-ink-dark">{{ campaign.title }}</h1>
+          <p class="text-ink-light dark:text-ink-dark/70">{{ campaign.nodes.length }} Abschnitte</p>
         </div>
 
         <!-- Node List (Simple for now, we'll enhance later) -->
-        <div class="bg-white dark:bg-gray-800 rounded-lg p-6 shadow-sm">
+        <div class="bg-paper dark:bg-paper-dark rounded-lg p-6 shadow-sm border border-divider">
           <div class="flex justify-between items-center mb-4">
-            <h3 class="text-lg font-bold">Story Nodes</h3>
+            <h3 class="text-lg font-serif text-ink dark:text-ink-dark">Abschnitte</h3>
             <button @click="createNode()" class="btn-primary">
-              + Add Node
+              + Abschnitt hinzufügen
             </button>
           </div>
 
@@ -70,23 +70,23 @@
               :class="[
                 'p-4 border-2 rounded-lg cursor-pointer transition-all',
                 selectedNodeId === node.id
-                  ? 'border-blue-500 bg-blue-50 dark:bg-blue-900/20'
-                  : 'border-gray-300 dark:border-gray-600 hover:border-gray-400'
+                  ? 'border-sepia bg-shadow/30 dark:bg-sepia/10'
+                  : 'border-divider hover:border-sepia/50'
               ]"
             >
               <div class="flex justify-between items-start gap-4">
                 <div class="flex-1 min-w-0">
-                  <p class="font-mono text-sm text-gray-500 mb-1">{{ node.id }}</p>
-                  <p class="truncate">{{ node.content.text || '(empty)' }}</p>
-                  <p class="text-sm text-gray-500 mt-2">
-                    {{ node.choices?.length || 0 }} choice(s)
+                  <p class="font-mono text-sm text-ink-light dark:text-ink-dark/70 mb-1">{{ node.id }}</p>
+                  <p class="truncate text-ink dark:text-ink-dark">{{ node.content.text || '(leer)' }}</p>
+                  <p class="text-sm text-ink-light dark:text-ink-dark/70 mt-2">
+                    {{ node.choices?.length || 0 }} Entscheidung(en)
                   </p>
                 </div>
                 <button
                   @click.stop="deleteNode(node.id)"
-                  class="btn-secondary text-sm"
+                  class="btn-secondary text-sm px-3"
                 >
-                  🗑️
+                  ×
                 </button>
               </div>
             </div>
@@ -94,29 +94,29 @@
         </div>
 
         <!-- Node Editor Panel (when node is selected) -->
-        <div v-if="selectedNode" class="mt-6 bg-white dark:bg-gray-800 rounded-lg p-6 shadow-sm">
-          <h3 class="text-lg font-bold mb-4">Edit Node: {{ selectedNode.id }}</h3>
+        <div v-if="selectedNode" class="mt-6 bg-paper dark:bg-paper-dark rounded-lg p-6 shadow-sm border border-divider">
+          <h3 class="text-lg font-serif text-ink dark:text-ink-dark mb-4">Abschnitt bearbeiten: {{ selectedNode.id }}</h3>
 
           <div class="mb-4">
-            <label class="block text-sm font-medium mb-2">Node Text</label>
+            <label class="block text-sm font-medium text-ink dark:text-ink-dark mb-2">Text</label>
             <textarea
               :value="selectedNode.content.text"
               @input="updateNodeText(selectedNode.id, $event.target.value)"
-              class="w-full p-3 border-2 border-gray-300 dark:border-gray-600 rounded-lg
-                     bg-white dark:bg-gray-700 text-gray-900 dark:text-white
-                     min-h-[120px] focus:border-blue-500 focus:outline-none"
-              placeholder="Write your story text here..."
+              class="w-full p-3 border-2 border-divider rounded-lg
+                     bg-paper dark:bg-paper-dark text-ink dark:text-ink-dark
+                     min-h-[120px] focus:border-sepia focus:outline-none font-serif"
+              placeholder="Schreiben Sie hier Ihren Geschichtentext..."
             />
           </div>
 
           <div class="mb-4">
             <div class="flex justify-between items-center mb-2">
-              <label class="block text-sm font-medium">Choices</label>
+              <label class="block text-sm font-medium text-ink dark:text-ink-dark">Entscheidungen</label>
               <button
-                @click="addChoice(selectedNode.id, 'New Choice')"
+                @click="addChoice(selectedNode.id, 'Neue Entscheidung')"
                 class="btn-secondary text-sm"
               >
-                + Add Choice
+                + Entscheidung hinzufügen
               </button>
             </div>
 
@@ -124,22 +124,22 @@
               <div
                 v-for="(choice, index) in selectedNode.choices"
                 :key="index"
-                class="flex gap-2 items-center p-3 bg-gray-50 dark:bg-gray-700 rounded-lg"
+                class="flex gap-2 items-center p-3 bg-shadow/20 dark:bg-paper-dark rounded-lg border border-divider"
               >
                 <input
                   :value="choice.text"
                   @input="updateChoice(selectedNode.id, index, { text: $event.target.value })"
-                  class="flex-1 p-2 border border-gray-300 dark:border-gray-600 rounded
-                         bg-white dark:bg-gray-800 text-gray-900 dark:text-white"
-                  placeholder="Choice text"
+                  class="flex-1 p-2 border border-divider rounded
+                         bg-paper dark:bg-paper-dark text-ink dark:text-ink-dark"
+                  placeholder="Entscheidungstext"
                 />
                 <select
                   :value="choice.targetNode"
                   @change="updateChoice(selectedNode.id, index, { targetNode: $event.target.value })"
-                  class="p-2 border border-gray-300 dark:border-gray-600 rounded
-                         bg-white dark:bg-gray-800 text-gray-900 dark:text-white"
+                  class="p-2 border border-divider rounded
+                         bg-paper dark:bg-paper-dark text-ink dark:text-ink-dark"
                 >
-                  <option value="">→ Target</option>
+                  <option value="">→ Ziel</option>
                   <option
                     v-for="node in campaign.nodes"
                     :key="node.id"
@@ -150,13 +150,13 @@
                 </select>
                 <button
                   @click="deleteChoice(selectedNode.id, index)"
-                  class="btn-secondary text-sm"
+                  class="btn-secondary text-sm px-3"
                 >
-                  🗑️
+                  ×
                 </button>
               </div>
             </div>
-            <p v-else class="text-sm text-gray-500">No choices yet</p>
+            <p v-else class="text-sm text-ink-light dark:text-ink-dark/70">Noch keine Entscheidungen</p>
           </div>
         </div>
       </div>

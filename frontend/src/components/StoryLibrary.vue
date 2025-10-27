@@ -1,36 +1,36 @@
 <template>
   <div class="story-library">
     <div class="mb-6">
-      <h2 class="text-2xl font-bold mb-2">📚 Story Library</h2>
-      <p class="text-gray-600 dark:text-gray-400">
-        Wähle eine Geschichte zum Spielen
+      <h2 class="text-2xl font-serif mb-2 text-ink dark:text-ink-dark">Bibliothek</h2>
+      <p class="text-ink-light dark:text-ink-dark/70">
+        Wählen Sie eine Geschichte aus unserer Sammlung
       </p>
     </div>
 
     <!-- Tabs -->
-    <div class="mb-6 border-b-2 border-gray-200 dark:border-gray-700">
+    <div class="mb-6 border-b border-divider">
       <div class="flex gap-4">
         <button
           @click="activeTab = 'all'"
           :class="[
             'pb-3 px-2 font-medium transition-colors btn-touch',
             activeTab === 'all'
-              ? 'border-b-2 border-blue-500 text-blue-600 dark:text-blue-400'
-              : 'text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-200'
+              ? 'border-b-2 border-sepia text-sepia'
+              : 'text-ink-light hover:text-ink'
           ]"
         >
-          Alle Stories ({{ allStories.length }})
+          Alle Geschichten ({{ allStories.length }})
         </button>
         <button
           @click="activeTab = 'personal'"
           :class="[
             'pb-3 px-2 font-medium transition-colors btn-touch',
             activeTab === 'personal'
-              ? 'border-b-2 border-blue-500 text-blue-600 dark:text-blue-400'
-              : 'text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-200'
+              ? 'border-b-2 border-sepia text-sepia'
+              : 'text-ink-light hover:text-ink'
           ]"
         >
-          Meine Stories ({{ personalStoriesStore.personalStoriesCount }})
+          Meine Geschichten ({{ personalStoriesStore.personalStoriesCount }})
         </button>
       </div>
     </div>
@@ -40,18 +40,18 @@
       <div
         v-for="story in stories"
         :key="story.id"
-        class="story-card bg-white dark:bg-gray-800 rounded-lg p-5 shadow-md border-2 border-gray-200 dark:border-gray-700 hover:border-blue-500 dark:hover:border-blue-400 transition-all"
+        class="story-card bg-paper dark:bg-paper-dark rounded p-5 border border-divider hover:border-sepia/50 hover:shadow-sm transition-all"
       >
         <!-- Story Header -->
-        <div class="mb-3">
-          <h3 class="text-xl font-bold mb-1">{{ story.title }}</h3>
-          <p class="text-sm text-gray-600 dark:text-gray-400">
-            von {{ story.author }}
+        <div class="mb-3 border-b border-divider/50 pb-3">
+          <h3 class="text-xl font-serif text-ink dark:text-ink-dark mb-1">{{ story.title }}</h3>
+          <p class="text-sm text-ink-light dark:text-ink-dark/70 italic">
+            {{ story.author }}
           </p>
         </div>
 
         <!-- Story Description -->
-        <p class="text-gray-700 dark:text-gray-300 mb-4 line-clamp-2">
+        <p class="text-ink dark:text-ink-dark mb-4 line-clamp-2 text-sm leading-relaxed">
           {{ story.description }}
         </p>
 
@@ -60,17 +60,17 @@
           <span
             v-for="genre in story.genre"
             :key="genre"
-            class="px-2 py-1 text-xs font-medium bg-blue-100 dark:bg-blue-900/30 text-blue-800 dark:text-blue-300 rounded"
+            class="px-2 py-1 text-xs text-sepia border border-sepia/30 rounded-sm"
           >
             {{ genre }}
           </span>
         </div>
 
         <!-- Story Stats -->
-        <div class="flex flex-wrap gap-4 mb-4 text-sm text-gray-600 dark:text-gray-400">
-          <span>⏱️ {{ story.estimatedPlaytime }}</span>
-          <span>🎭 {{ story.endings }} Enden</span>
-          <span>📍 {{ story.stats.nodes }} Szenen</span>
+        <div class="flex flex-wrap gap-4 mb-4 text-xs text-ink-light dark:text-ink-dark/70">
+          <span>{{ story.estimatedPlaytime }}</span>
+          <span>{{ story.endings }} Enden</span>
+          <span>{{ story.stats.nodes }} Abschnitte</span>
         </div>
 
         <!-- Action Buttons -->
@@ -79,20 +79,20 @@
             @click="playStory(story)"
             class="btn-primary flex-1"
           >
-            ▶️ Spielen
+            Lesen
           </button>
           <button
             @click="editStory(story)"
             class="btn-secondary flex-1"
           >
-            ✏️ Bearbeiten
+            Überarbeiten
           </button>
           <button
             @click="deleteStory(story)"
             class="btn-secondary px-3"
-            title="Story löschen"
+            title="Geschichte entfernen"
           >
-            🗑️
+            ×
           </button>
         </div>
         <div v-else class="flex gap-2">
@@ -100,27 +100,27 @@
             @click="playStory(story)"
             class="btn-primary flex-1"
           >
-            ▶️ Spielen
+            Lesen
           </button>
           <button
             @click="copyAsTemplate(story)"
             class="btn-secondary flex-1"
-            title="Als Template in deine Library kopieren"
+            title="Als Vorlage in Ihre Bibliothek übernehmen"
           >
-            📋 Als Template
+            Als Vorlage
           </button>
         </div>
       </div>
     </div>
 
     <!-- Import Custom Story Section -->
-    <div class="mt-8 p-4 bg-gray-100 dark:bg-gray-800 rounded-lg border-2 border-dashed border-gray-300 dark:border-gray-600">
-      <h3 class="font-bold mb-2">📁 Eigene Story importieren</h3>
-      <p class="text-sm text-gray-600 dark:text-gray-400 mb-3">
-        Hast du eine JSON-Story? Importiere sie hier!
+    <div class="mt-8 p-4 bg-shadow/30 dark:bg-paper-dark rounded border border-divider">
+      <h3 class="font-serif text-ink dark:text-ink-dark mb-2">Eigene Geschichte hinzufügen</h3>
+      <p class="text-sm text-ink-light dark:text-ink-dark/70 mb-3">
+        Fügen Sie eine Geschichte aus einer Datei hinzu
       </p>
       <label class="btn-secondary cursor-pointer inline-block">
-        📤 JSON hochladen
+        Datei auswählen
         <input
           type="file"
           @change="handleFileImport"

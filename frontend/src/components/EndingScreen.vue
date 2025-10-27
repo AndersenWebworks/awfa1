@@ -2,12 +2,12 @@
   <div class="ending-screen text-center py-12">
     <!-- Ending Message -->
     <div class="mb-8">
-      <div class="text-6xl mb-4">🎭</div>
-      <h2 class="text-3xl font-bold mb-3 text-gray-900 dark:text-gray-100">
+      <div class="text-6xl mb-4 text-sepia">∎</div>
+      <h2 class="text-3xl font-serif mb-3 text-ink dark:text-ink-dark">
         Das Ende
       </h2>
-      <p class="text-gray-600 dark:text-gray-400">
-        Du hast das Ende dieser Geschichte erreicht
+      <p class="text-ink-light dark:text-ink-dark/70">
+        Sie haben das Ende dieser Geschichte erreicht
       </p>
     </div>
 
@@ -17,26 +17,26 @@
         @click="restartStory"
         class="btn-primary w-full"
       >
-        🔄 Story neu starten
+        Geschichte neu beginnen
       </button>
 
       <button
         @click="goToLibrary"
         class="btn-secondary w-full"
       >
-        📚 Zurück zur Library
+        Zurück zur Bibliothek
       </button>
 
       <!-- Optional: Next Story Suggestion -->
-      <div v-if="suggestedStory" class="mt-6 pt-6 border-t border-gray-200 dark:border-gray-700">
-        <p class="text-sm text-gray-600 dark:text-gray-400 mb-3">
-          Nächste Story:
+      <div v-if="suggestedStory" class="mt-6 pt-6 border-t border-divider">
+        <p class="text-sm text-ink-light dark:text-ink-dark/70 mb-3">
+          Nächste Geschichte:
         </p>
         <button
           @click="playNextStory"
           class="btn-secondary w-full"
         >
-          ▶️ {{ suggestedStory.title }}
+          {{ suggestedStory.title }}
         </button>
       </div>
     </div>

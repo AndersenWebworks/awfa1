@@ -1,26 +1,26 @@
 <template>
-  <header class="reader-header bg-white dark:bg-gray-900 border-b border-gray-200 dark:border-gray-700 sticky top-0 z-10">
+  <header class="reader-header bg-paper dark:bg-paper-dark border-b border-divider sticky top-0 z-10">
     <div class="container mx-auto px-4 py-3">
       <div class="flex items-center justify-between gap-4">
         <!-- Back Button -->
         <button
           @click="goBack"
-          class="btn-touch flex items-center gap-2 text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
-          aria-label="Zurück zur Story Library"
+          class="btn-touch flex items-center gap-2 text-ink-light dark:text-ink-dark hover:text-sepia transition-colors"
+          aria-label="Zurück zur Bibliothek"
         >
           <span class="text-xl">←</span>
-          <span class="hidden sm:inline font-medium">Library</span>
+          <span class="hidden sm:inline font-medium">Bibliothek</span>
         </button>
 
         <!-- Story Title -->
-        <h1 class="flex-1 text-center font-bold text-gray-900 dark:text-gray-100 truncate">
+        <h1 class="flex-1 text-center font-serif text-ink dark:text-ink-dark truncate">
           {{ storyTitle }}
         </h1>
 
         <!-- Progress (optional) -->
         <div
           v-if="showProgress && totalNodes > 0"
-          class="text-sm text-gray-600 dark:text-gray-400 whitespace-nowrap"
+          class="text-sm text-ink-light dark:text-ink-dark/70 whitespace-nowrap"
         >
           {{ currentNodeIndex + 1 }}/{{ totalNodes }}
         </div>

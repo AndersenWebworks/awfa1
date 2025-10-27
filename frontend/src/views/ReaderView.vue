@@ -1,5 +1,5 @@
 <template>
-  <div class="min-h-screen bg-reader-bg dark:bg-reader-bg-dark safe-area">
+  <div class="min-h-screen bg-paper dark:bg-paper-dark safe-area">
     <!-- Reader Header (sticky, always visible when story loaded) -->
     <ReaderHeader v-if="isStoryLoaded" :show-progress="true" />
 

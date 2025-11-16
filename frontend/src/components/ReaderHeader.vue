@@ -65,7 +65,9 @@ const currentNodeIndex = computed(() => {
 
 // Methods
 function goBack() {
-  router.push('/')
+  // Go back to library (reader without story loaded)
+  storyStore.resetStory()
+  router.push('/reader')
 }
 </script>
 

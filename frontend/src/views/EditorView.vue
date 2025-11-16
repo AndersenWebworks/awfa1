@@ -2,8 +2,8 @@
   <div class="min-h-screen bg-paper dark:bg-paper-dark safe-area">
     <div class="container-mobile">
       <header class="flex justify-between items-center mb-8">
-        <router-link to="/" class="btn-secondary">
-          ← Zurück
+        <router-link to="/reader" class="btn-secondary">
+          ← Bibliothek
         </router-link>
 
         <div class="flex gap-2">

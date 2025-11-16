@@ -83,7 +83,9 @@ function restartStory() {
 }
 
 function goToLibrary() {
-  router.push('/')
+  // Reset story and go to library
+  storyStore.resetStory()
+  router.push('/reader')
 }
 
 function playNextStory() {

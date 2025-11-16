@@ -60,14 +60,16 @@
     @apply hover:border-sepia hover:bg-sepia/5;
   }
 
-  /* Choice buttons - like chapter selections in a book */
+  /* Choice buttons - consistent with story text typography */
   .choice-btn {
     @apply btn-touch w-full text-left font-serif;
+    @apply text-reader-base leading-reader; /* Same size & line-height as story text */
     @apply bg-paper dark:bg-paper-dark;
     @apply border border-divider;
     @apply hover:border-sepia hover:bg-shadow/30;
     @apply transition-all duration-200;
     @apply text-ink dark:text-ink-dark;
+    letter-spacing: 2px; /* Same letter-spacing as story text */
   }
 
   /* Mobile-first container */

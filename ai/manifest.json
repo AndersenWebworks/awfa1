@@ -1,8 +1,9 @@
 {
   "site": "andersenwebworks.github.io/awfa1",
-  "version": "v0.3",
-  "build": 3,
+  "version": "v0.4",
+  "build": 4,
   "changelog": [
+    "v0.4 feat: Editor UX overhaul (editable node names, side-by-side layout, title/author fields)",
     "v0.3 feat: Visual distinction Library vs Reading Mode (immersive reading UX)",
     "v0.2 feat: GitHub Pages Migration + Deployment",
     "v0.1 feat: Initial MVP Setup - Vue 3 + Vite + Tailwind"

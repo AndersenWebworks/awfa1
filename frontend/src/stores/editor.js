@@ -57,7 +57,7 @@ export const useEditorStore = defineStore('editor', () => {
   function createNode(id = null, text = '') {
     if (!campaign.value) return null
 
-    const nodeId = id || generateId()
+    const nodeId = id || generateNodeId()
     const newNode = {
       id: nodeId,
       type: 'story',
@@ -71,6 +71,46 @@ export const useEditorStore = defineStore('editor', () => {
     selectedNodeId.value = nodeId
 
     return newNode
+  }
+
+  // Update node ID (rename)
+  function updateNodeId(oldId, newId) {
+    if (!campaign.value) return false
+
+    // Check if new ID already exists
+    if (campaign.value.nodes.some(n => n.id === newId && n.id !== oldId)) {
+      return false // ID already taken
+    }
+
+    // Find node
+    const node = campaign.value.nodes.find(n => n.id === oldId)
+    if (!node) return false
+
+    // Update node ID
+    node.id = newId
+
+    // Update startNodeId if needed
+    if (campaign.value.startNodeId === oldId) {
+      campaign.value.startNodeId = newId
+    }
+
+    // Update all choice references
+    campaign.value.nodes.forEach(n => {
+      if (n.choices) {
+        n.choices.forEach(choice => {
+          if (choice.targetNode === oldId) {
+            choice.targetNode = newId
+          }
+        })
+      }
+    })
+
+    // Update selection if needed
+    if (selectedNodeId.value === oldId) {
+      selectedNodeId.value = newId
+    }
+
+    return true
   }
 
   // Update node text
@@ -228,9 +268,26 @@ export const useEditorStore = defineStore('editor', () => {
     )
   }
 
-  // Helper: Generate unique ID
+  // Helper: Generate unique ID for choices
   function generateId() {
-    return 'node_' + Date.now() + '_' + Math.random().toString(36).substr(2, 9)
+    return 'choice_' + Date.now() + '_' + Math.random().toString(36).substr(2, 9)
+  }
+
+  // Helper: Generate readable node ID
+  function generateNodeId() {
+    if (!campaign.value || !campaign.value.nodes) return 'node-1'
+
+    // Find highest node number
+    let maxNum = 0
+    campaign.value.nodes.forEach(node => {
+      const match = node.id.match(/^node-(\d+)$/)
+      if (match) {
+        const num = parseInt(match[1], 10)
+        if (num > maxNum) maxNum = num
+      }
+    })
+
+    return `node-${maxNum + 1}`
   }
 
   return {
@@ -244,6 +301,7 @@ export const useEditorStore = defineStore('editor', () => {
     createNewCampaign,
     loadCampaign,
     createNode,
+    updateNodeId,
     updateNodeText,
     deleteNode,
     addChoice,

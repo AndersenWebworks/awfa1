@@ -17,6 +17,18 @@ import { usePersonalStoriesStore } from './personalStories'
 const AUTO_SAVE_KEY = 'awfa1_editor_autosave'
 const AUTO_SAVE_DEBOUNCE = 3000 // 3 seconds
 
+// Check if localStorage is available
+function isLocalStorageAvailable() {
+  try {
+    const test = '__localStorage_test__'
+    localStorage.setItem(test, test)
+    localStorage.removeItem(test)
+    return true
+  } catch (e) {
+    return false
+  }
+}
+
 export const useEditorStore = defineStore('editor', () => {
   // Campaign being edited
   const campaign = ref(null)
@@ -29,6 +41,9 @@ export const useEditorStore = defineStore('editor', () => {
 
   // Auto-save timer
   let autoSaveTimer = null
+
+  // Auto-save callback (for UI notification)
+  let autoSaveCallback = null
 
   // Computed: Get selected node
   const selectedNode = computed(() => {
@@ -334,6 +349,12 @@ export const useEditorStore = defineStore('editor', () => {
   function triggerAutoSave() {
     if (!campaign.value) return
 
+    // Check localStorage availability
+    if (!isLocalStorageAvailable()) {
+      console.warn('localStorage not available - auto-save disabled')
+      return
+    }
+
     // Clear existing timer
     if (autoSaveTimer) {
       clearTimeout(autoSaveTimer)
@@ -342,31 +363,85 @@ export const useEditorStore = defineStore('editor', () => {
     // Set new timer
     autoSaveTimer = setTimeout(() => {
       try {
-        localStorage.setItem(AUTO_SAVE_KEY, JSON.stringify(campaign.value))
-        console.log('Auto-saved to localStorage')
+        const saveData = {
+          campaign: campaign.value,
+          history: history.value,
+          historyIndex: historyIndex.value,
+          timestamp: Date.now()
+        }
+        localStorage.setItem(AUTO_SAVE_KEY, JSON.stringify(saveData))
+        console.log('Auto-saved to localStorage (with history)')
+
+        // Trigger UI notification if callback is set
+        if (autoSaveCallback) {
+          autoSaveCallback()
+        }
       } catch (error) {
         console.error('Auto-save failed:', error)
+        // Could be quota exceeded - warn user
+        if (error.name === 'QuotaExceededError') {
+          console.error('localStorage quota exceeded - auto-save disabled')
+        }
       }
     }, AUTO_SAVE_DEBOUNCE)
   }
 
+  // Set auto-save callback
+  function setAutoSaveCallback(callback) {
+    autoSaveCallback = callback
+  }
+
   // Restore from auto-save
   function restoreAutoSave() {
+    // Check localStorage availability
+    if (!isLocalStorageAvailable()) {
+      console.warn('localStorage not available - cannot restore auto-save')
+      return null
+    }
+
     try {
       const saved = localStorage.getItem(AUTO_SAVE_KEY)
       if (saved) {
         const data = JSON.parse(saved)
-        return data
+
+        // Validate data structure
+        if (!data) {
+          console.warn('Invalid auto-save data - ignoring')
+          return null
+        }
+
+        // Support old format (just campaign) and new format (with history)
+        if (data.campaign) {
+          // New format with history
+          history.value = data.history || []
+          historyIndex.value = data.historyIndex ?? -1
+          return data.campaign
+        } else {
+          // Old format (backward compatibility)
+          return data
+        }
       }
     } catch (error) {
       console.error('Failed to restore auto-save:', error)
+      // Clear corrupted data
+      try {
+        localStorage.removeItem(AUTO_SAVE_KEY)
+      } catch (e) {
+        // Ignore cleanup errors
+      }
     }
     return null
   }
 
   // Clear auto-save
   function clearAutoSave() {
-    localStorage.removeItem(AUTO_SAVE_KEY)
+    if (!isLocalStorageAvailable()) return
+
+    try {
+      localStorage.removeItem(AUTO_SAVE_KEY)
+    } catch (error) {
+      console.error('Failed to clear auto-save:', error)
+    }
   }
 
   // Watch campaign for changes → trigger auto-save
@@ -447,6 +522,7 @@ export const useEditorStore = defineStore('editor', () => {
     // Auto-save
     restoreAutoSave,
     clearAutoSave,
+    setAutoSaveCallback,
 
     // Undo/Redo
     undo,

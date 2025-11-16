@@ -1,5 +1,15 @@
 <template>
   <div class="min-h-screen bg-paper dark:bg-paper-dark safe-area">
+    <!-- Auto-save indicator -->
+    <transition name="fade">
+      <div
+        v-if="showAutoSaveIndicator"
+        class="fixed top-4 right-4 z-50 bg-green-600 text-white px-4 py-2 rounded-lg shadow-lg text-sm font-medium"
+      >
+        ✓ Automatisch gespeichert
+      </div>
+    </transition>
+
     <div class="container-mobile pt-4 pb-8">
       <!-- Header with actions -->
       <header class="flex justify-between items-center mb-6">
@@ -307,7 +317,7 @@
 </template>
 
 <script setup>
-import { ref, computed, onMounted } from 'vue'
+import { ref, computed, onMounted, onUnmounted } from 'vue'
 import { storeToRefs } from 'pinia'
 import { useEditorStore } from '../stores/editor'
 
@@ -327,6 +337,7 @@ const {
   saveCampaign,
   restoreAutoSave,
   clearAutoSave,
+  setAutoSaveCallback,
   undo,
   redo,
 } = editorStore
@@ -337,7 +348,50 @@ const jsonPreview = computed(() => {
   return campaign.value ? JSON.stringify(campaign.value, null, 2) : ''
 })
 
-// Check for auto-save on mount
+// Auto-save indicator state
+const showAutoSaveIndicator = ref(false)
+let autoSaveIndicatorTimer = null
+
+// Show auto-save indicator (called from store)
+function showAutoSaveNotification() {
+  showAutoSaveIndicator.value = true
+
+  // Clear existing timer
+  if (autoSaveIndicatorTimer) {
+    clearTimeout(autoSaveIndicatorTimer)
+  }
+
+  // Hide after 2 seconds
+  autoSaveIndicatorTimer = setTimeout(() => {
+    showAutoSaveIndicator.value = false
+  }, 2000)
+}
+
+// Keyboard shortcuts handler
+function handleKeyDown(event) {
+  // Only handle shortcuts when campaign is loaded
+  if (!isCampaignLoaded.value) return
+
+  // Undo: Ctrl+Z (Windows/Linux) or Cmd+Z (Mac)
+  if ((event.ctrlKey || event.metaKey) && event.key === 'z' && !event.shiftKey) {
+    if (canUndo.value) {
+      event.preventDefault()
+      undo()
+    }
+  }
+
+  // Redo: Ctrl+Y (Windows/Linux) or Cmd+Shift+Z (Mac)
+  if (
+    ((event.ctrlKey && event.key === 'y') || (event.metaKey && event.shiftKey && event.key === 'z'))
+  ) {
+    if (canRedo.value) {
+      event.preventDefault()
+      redo()
+    }
+  }
+}
+
+// Check for auto-save on mount + add keyboard listener
 onMounted(() => {
   if (!isCampaignLoaded.value) {
     const autoSaved = restoreAutoSave()
@@ -349,6 +403,17 @@ onMounted(() => {
       }
     }
   }
+
+  // Add keyboard shortcut listener
+  window.addEventListener('keydown', handleKeyDown)
+
+  // Set auto-save callback for UI notification
+  setAutoSaveCallback(showAutoSaveNotification)
+})
+
+// Remove keyboard listener on unmount
+onUnmounted(() => {
+  window.removeEventListener('keydown', handleKeyDown)
 })
 
 // Handle node ID change
@@ -466,6 +531,15 @@ function copyJsonToClipboard() {
   .editor-grid {
     grid-template-columns: 350px 1fr;
   }
+}
+
+/* Fade transition for auto-save indicator */
+.fade-enter-active, .fade-leave-active {
+  transition: opacity 0.3s ease;
+}
+
+.fade-enter-from, .fade-leave-to {
+  opacity: 0;
 }
 
 @media (min-width: 1280px) {

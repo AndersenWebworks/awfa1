@@ -1,8 +1,9 @@
 {
   "site": "andersenwebworks.github.io/awfa1",
-  "version": "v0.7",
-  "build": 7,
+  "version": "v0.8",
+  "build": 8,
   "changelog": [
+    "v0.8 feat: Production Polish - Keyboard shortcuts, Auto-save indicator, localStorage guards",
     "v0.7 feat: Auto-Save + Undo/Redo - Production-Ready Editor",
     "v0.6 fix: Polish & QA fixes (mobile JSON preview, save validation, better error messages)",
     "v0.5 feat: Milestone 4 complete (JSON preview, ES module fix) - MVP Editor 100% done",

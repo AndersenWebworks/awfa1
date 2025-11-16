@@ -59,7 +59,7 @@ const { chooseOption, resetStory } = storyStore
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 2rem 1rem;
+  padding: 2rem 1rem 4rem 1rem; /* Extra bottom padding for breathing room */
   min-height: calc(100vh - 60px); /* Account for ReaderHeader */
 }
 
@@ -82,7 +82,7 @@ const { chooseOption, resetStory } = storyStore
   }
 
   .reading-mode {
-    padding: 1.5rem 1rem;
+    padding: 1.5rem 1rem 3rem 1rem; /* Extra bottom padding on mobile */
   }
 }
 

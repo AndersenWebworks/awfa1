@@ -3,7 +3,7 @@
     <!-- Reader Header (sticky, always visible when story loaded) -->
     <ReaderHeader v-if="isStoryLoaded" :show-progress="true" />
 
-    <div class="container-mobile" :class="{ 'pt-4': isStoryLoaded }">
+    <div class="container-mobile" :class="{ 'pt-4': isStoryLoaded, 'pt-4': !isStoryLoaded }">
       <!-- Story Library (when no story is loaded) -->
       <StoryLibrary v-if="!isStoryLoaded" />
 

@@ -1,11 +1,7 @@
 <template>
   <div class="min-h-screen bg-paper dark:bg-paper-dark safe-area">
-    <div class="container-mobile">
-      <header class="flex justify-between items-center mb-8">
-        <router-link to="/reader" class="btn-secondary">
-          ← Bibliothek
-        </router-link>
-
+    <div class="container-mobile pt-4">
+      <header class="flex justify-end items-center mb-8">
         <div class="flex gap-2">
           <button
             v-if="isCampaignLoaded"

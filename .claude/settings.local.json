@@ -27,7 +27,8 @@
       "Skill(page)",
       "Skill(serif)",
       "Skill(syntax)",
-      "Bash(npm run build:*)"
+      "Bash(npm run build:*)",
+      "Bash(cat:*)"
     ],
     "deny": [],
     "ask": []

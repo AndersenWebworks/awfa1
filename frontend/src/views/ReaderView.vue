@@ -3,19 +3,21 @@
     <!-- Reader Header (sticky, always visible when story loaded) -->
     <ReaderHeader v-if="isStoryLoaded" :show-progress="true" />
 
-    <div class="container-mobile" :class="{ 'pt-4': isStoryLoaded, 'pt-4': !isStoryLoaded }">
-      <!-- Story Library (when no story is loaded) -->
-      <StoryLibrary v-if="!isStoryLoaded" />
+    <!-- Library Mode - browsing stories -->
+    <div v-if="!isStoryLoaded" class="library-mode container-mobile pt-4">
+      <StoryLibrary />
+    </div>
 
-      <!-- Story Display -->
-      <div v-else class="reader-content">
+    <!-- Reading Mode - immersive story reading -->
+    <div v-else class="reading-mode">
+      <div class="reader-content-wrapper">
         <!-- Current Node Text -->
-        <div class="reader-text mb-8" v-if="currentNode">
+        <div class="reader-text" v-if="currentNode">
           <p class="whitespace-pre-wrap">{{ currentNode.content.text }}</p>
         </div>
 
         <!-- Choices -->
-        <div v-if="currentNode && currentNode.choices && currentNode.choices.length > 0" class="space-y-3">
+        <div v-if="currentNode && currentNode.choices && currentNode.choices.length > 0" class="choices-container">
           <button
             v-for="(choice, index) in currentNode.choices"
             :key="index"
@@ -44,3 +46,51 @@ const storyStore = useStoryStore()
 const { campaign, currentNode, isStoryLoaded } = storeToRefs(storyStore)
 const { chooseOption, resetStory } = storyStore
 </script>
+
+<style scoped>
+/* Library Mode - standard browsing UI */
+.library-mode {
+  /* Uses standard container-mobile padding from global CSS */
+}
+
+/* Reading Mode - immersive, full-focus */
+.reading-mode {
+  /* Center content with optimal reading width */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 2rem 1rem;
+  min-height: calc(100vh - 60px); /* Account for ReaderHeader */
+}
+
+.reader-content-wrapper {
+  width: 100%;
+  max-width: 42rem; /* ~65-75 characters per line - optimal reading */
+}
+
+/* Story Text - reading optimized */
+.reader-text {
+  margin-bottom: 3rem;
+  line-height: 1.8;
+  font-size: 1.125rem; /* Slightly larger for reading */
+}
+
+@media (max-width: 640px) {
+  .reader-text {
+    font-size: 1rem;
+    line-height: 1.75;
+  }
+
+  .reading-mode {
+    padding: 1.5rem 1rem;
+  }
+}
+
+/* Choices - subtle but clear */
+.choices-container {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  margin-top: 2rem;
+}
+</style>

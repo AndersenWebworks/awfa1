@@ -24,21 +24,4 @@ const router = createRouter({
   ],
 })
 
-// Navigation Guard: Redirect direct access to sub-routes to home
-// This helps first-time users understand the app structure
-let isFirstNavigation = true
-
-router.beforeEach((to, from) => {
-  // Only redirect on first navigation (direct URL access)
-  // AND if going to /reader or /editor
-  // NOT if navigating FROM another route (internal navigation)
-  if (isFirstNavigation && (to.path === '/reader' || to.path === '/editor') && from.name === undefined) {
-    isFirstNavigation = false
-    return { path: '/' }
-  }
-
-  // After first navigation, allow all routes
-  isFirstNavigation = false
-})
-
 export default router

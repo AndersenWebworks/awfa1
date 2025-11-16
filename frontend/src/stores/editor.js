@@ -1,5 +1,5 @@
 import { defineStore } from 'pinia'
-import { ref, computed } from 'vue'
+import { ref, computed, watch } from 'vue'
 import { usePersonalStoriesStore } from './personalStories'
 
 /**
@@ -10,11 +10,25 @@ import { usePersonalStoriesStore } from './personalStories'
  * - Adding/editing/deleting nodes
  * - Managing choices
  * - Export/Import JSON
+ * - Auto-save to localStorage
+ * - Undo/Redo functionality
  */
+
+const AUTO_SAVE_KEY = 'awfa1_editor_autosave'
+const AUTO_SAVE_DEBOUNCE = 3000 // 3 seconds
+
 export const useEditorStore = defineStore('editor', () => {
   // Campaign being edited
   const campaign = ref(null)
   const selectedNodeId = ref(null)
+
+  // Undo/Redo history
+  const history = ref([])
+  const historyIndex = ref(-1)
+  const maxHistorySize = 50
+
+  // Auto-save timer
+  let autoSaveTimer = null
 
   // Computed: Get selected node
   const selectedNode = computed(() => {
@@ -316,12 +330,105 @@ export const useEditorStore = defineStore('editor', () => {
     return `node-${maxNum + 1}`
   }
 
+  // Auto-save to localStorage
+  function triggerAutoSave() {
+    if (!campaign.value) return
+
+    // Clear existing timer
+    if (autoSaveTimer) {
+      clearTimeout(autoSaveTimer)
+    }
+
+    // Set new timer
+    autoSaveTimer = setTimeout(() => {
+      try {
+        localStorage.setItem(AUTO_SAVE_KEY, JSON.stringify(campaign.value))
+        console.log('Auto-saved to localStorage')
+      } catch (error) {
+        console.error('Auto-save failed:', error)
+      }
+    }, AUTO_SAVE_DEBOUNCE)
+  }
+
+  // Restore from auto-save
+  function restoreAutoSave() {
+    try {
+      const saved = localStorage.getItem(AUTO_SAVE_KEY)
+      if (saved) {
+        const data = JSON.parse(saved)
+        return data
+      }
+    } catch (error) {
+      console.error('Failed to restore auto-save:', error)
+    }
+    return null
+  }
+
+  // Clear auto-save
+  function clearAutoSave() {
+    localStorage.removeItem(AUTO_SAVE_KEY)
+  }
+
+  // Watch campaign for changes → trigger auto-save
+  watch(campaign, () => {
+    if (campaign.value) {
+      triggerAutoSave()
+      saveToHistory()
+    }
+  }, { deep: true })
+
+  // Undo/Redo functionality
+  function saveToHistory() {
+    if (!campaign.value) return
+
+    // Create snapshot
+    const snapshot = JSON.parse(JSON.stringify(campaign.value))
+
+    // Remove future history if we're not at the end
+    if (historyIndex.value < history.value.length - 1) {
+      history.value = history.value.slice(0, historyIndex.value + 1)
+    }
+
+    // Add to history
+    history.value.push(snapshot)
+
+    // Limit history size
+    if (history.value.length > maxHistorySize) {
+      history.value.shift()
+    } else {
+      historyIndex.value++
+    }
+  }
+
+  function undo() {
+    if (historyIndex.value > 0) {
+      historyIndex.value--
+      campaign.value = JSON.parse(JSON.stringify(history.value[historyIndex.value]))
+      return true
+    }
+    return false
+  }
+
+  function redo() {
+    if (historyIndex.value < history.value.length - 1) {
+      historyIndex.value++
+      campaign.value = JSON.parse(JSON.stringify(history.value[historyIndex.value]))
+      return true
+    }
+    return false
+  }
+
+  const canUndo = computed(() => historyIndex.value > 0)
+  const canRedo = computed(() => historyIndex.value < history.value.length - 1)
+
   return {
     // State
     campaign,
     selectedNodeId,
     selectedNode,
     isCampaignLoaded,
+    canUndo,
+    canRedo,
 
     // Actions
     createNewCampaign,
@@ -336,5 +443,13 @@ export const useEditorStore = defineStore('editor', () => {
     exportCampaign,
     importCampaign,
     saveCampaign,
+
+    // Auto-save
+    restoreAutoSave,
+    clearAutoSave,
+
+    // Undo/Redo
+    undo,
+    redo,
   }
 })

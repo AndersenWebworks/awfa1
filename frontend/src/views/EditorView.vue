@@ -5,6 +5,29 @@
       <header class="flex justify-between items-center mb-6">
         <h1 class="text-2xl font-serif text-ink dark:text-ink-dark">Editor</h1>
         <div class="flex gap-2">
+          <!-- Undo/Redo -->
+          <button
+            v-if="isCampaignLoaded"
+            @click="undo"
+            :disabled="!canUndo"
+            class="btn-secondary text-sm"
+            :class="{ 'opacity-50 cursor-not-allowed': !canUndo }"
+            title="Rückgängig (Ctrl+Z)"
+          >
+            ↶
+          </button>
+          <button
+            v-if="isCampaignLoaded"
+            @click="redo"
+            :disabled="!canRedo"
+            class="btn-secondary text-sm"
+            :class="{ 'opacity-50 cursor-not-allowed': !canRedo }"
+            title="Wiederholen (Ctrl+Y)"
+          >
+            ↷
+          </button>
+
+          <!-- JSON Preview -->
           <button
             v-if="isCampaignLoaded"
             @click="showJsonPreview = true"
@@ -13,6 +36,8 @@
           >
             { }
           </button>
+
+          <!-- Save/Export/Import -->
           <button
             v-if="isCampaignLoaded"
             @click="handleSave"
@@ -282,12 +307,12 @@
 </template>
 
 <script setup>
-import { ref, computed } from 'vue'
+import { ref, computed, onMounted } from 'vue'
 import { storeToRefs } from 'pinia'
 import { useEditorStore } from '../stores/editor'
 
 const editorStore = useEditorStore()
-const { campaign, selectedNodeId, selectedNode, isCampaignLoaded } = storeToRefs(editorStore)
+const { campaign, selectedNodeId, selectedNode, isCampaignLoaded, canUndo, canRedo } = storeToRefs(editorStore)
 const {
   createNewCampaign,
   createNode,
@@ -300,12 +325,30 @@ const {
   exportCampaign,
   importCampaign,
   saveCampaign,
+  restoreAutoSave,
+  clearAutoSave,
+  undo,
+  redo,
 } = editorStore
 
 // JSON Preview state
 const showJsonPreview = ref(false)
 const jsonPreview = computed(() => {
   return campaign.value ? JSON.stringify(campaign.value, null, 2) : ''
+})
+
+// Check for auto-save on mount
+onMounted(() => {
+  if (!isCampaignLoaded.value) {
+    const autoSaved = restoreAutoSave()
+    if (autoSaved) {
+      if (confirm('Es wurde eine automatisch gespeicherte Version gefunden.\n\nMöchten Sie diese wiederherstellen?')) {
+        editorStore.loadCampaign(autoSaved)
+      } else {
+        clearAutoSave()
+      }
+    }
+  }
 })
 
 // Handle node ID change
@@ -355,6 +398,7 @@ function countEndings() {
 function handleSave() {
   try {
     saveCampaign()
+    clearAutoSave() // Clear auto-save after manual save
     alert('Geschichte gespeichert!\n\nSie finden Ihre Geschichte nun unter "Meine Geschichten" im Reader.')
   } catch (error) {
     alert('Fehler beim Speichern: ' + error.message)

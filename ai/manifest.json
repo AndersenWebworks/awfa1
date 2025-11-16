@@ -1,8 +1,9 @@
 {
   "site": "andersenwebworks.github.io/awfa1",
-  "version": "v0.5",
-  "build": 5,
+  "version": "v0.6",
+  "build": 6,
   "changelog": [
+    "v0.6 fix: Polish & QA fixes (mobile JSON preview, save validation, better error messages)",
     "v0.5 feat: Milestone 4 complete (JSON preview, ES module fix) - MVP Editor 100% done",
     "v0.4 feat: Editor UX overhaul (editable node names, side-by-side layout, title/author fields)",
     "v0.3 feat: Visual distinction Library vs Reading Mode (immersive reading UX)",

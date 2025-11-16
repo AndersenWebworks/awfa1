@@ -56,7 +56,7 @@
             </button>
           </div>
           <div class="flex-1 overflow-auto p-4">
-            <pre class="text-xs font-mono text-ink dark:text-ink-dark bg-shadow/20 dark:bg-paper-dark p-4 rounded border border-divider overflow-x-auto">{{ jsonPreview }}</pre>
+            <pre class="text-xs sm:text-sm font-mono text-ink dark:text-ink-dark bg-shadow/20 dark:bg-paper-dark p-4 rounded border border-divider overflow-x-auto">{{ jsonPreview }}</pre>
           </div>
           <div class="flex justify-end gap-2 p-4 border-t border-divider">
             <button @click="copyJsonToClipboard" class="btn-secondary text-sm">
@@ -383,11 +383,11 @@ function handleImport(event) {
 
   const reader = new FileReader()
   reader.onload = (e) => {
-    const success = importCampaign(e.target.result)
-    if (success) {
-      alert('Geschichte importiert!')
+    const result = importCampaign(e.target.result)
+    if (result.success) {
+      alert('Geschichte erfolgreich importiert!')
     } else {
-      alert('Fehler beim Importieren: Ungültiges Format')
+      alert(`Fehler beim Importieren:\n\n${result.error}`)
     }
   }
   reader.readAsText(file)

@@ -203,16 +203,33 @@ export const useEditorStore = defineStore('editor', () => {
     try {
       const data = JSON.parse(jsonString)
 
-      // Basic validation
+      // Enhanced validation
       if (!data.nodes || !Array.isArray(data.nodes)) {
-        throw new Error('Invalid campaign format: missing nodes array')
+        throw new Error('Ungültiges Format: Keine Abschnitte (nodes) gefunden')
+      }
+
+      if (data.nodes.length === 0) {
+        throw new Error('Geschichte muss mindestens einen Abschnitt haben')
+      }
+
+      if (!data.title) {
+        throw new Error('Ungültiges Format: Kein Titel gefunden')
+      }
+
+      // Validate startNodeId exists
+      if (data.startNodeId && !data.nodes.find(n => n.id === data.startNodeId)) {
+        console.warn('startNodeId nicht gefunden, nutze ersten Node')
+        data.startNodeId = data.nodes[0].id
       }
 
       loadCampaign(data)
-      return true
+      return { success: true }
     } catch (error) {
       console.error('Failed to import campaign:', error)
-      return false
+      return {
+        success: false,
+        error: error.message || 'Ungültiges JSON-Format'
+      }
     }
   }
 
@@ -220,6 +237,15 @@ export const useEditorStore = defineStore('editor', () => {
   function saveCampaign() {
     if (!campaign.value) {
       throw new Error('No campaign loaded to save')
+    }
+
+    // Basic validation
+    if (!campaign.value.nodes || campaign.value.nodes.length === 0) {
+      throw new Error('Geschichte muss mindestens einen Abschnitt haben')
+    }
+
+    if (!campaign.value.title || campaign.value.title.trim() === '') {
+      throw new Error('Geschichte braucht einen Titel')
     }
 
     // Get Personal Stories Store

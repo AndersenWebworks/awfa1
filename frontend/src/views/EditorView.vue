@@ -20,9 +20,10 @@
             v-if="isCampaignLoaded"
             @click="undo"
             :disabled="!canUndo"
-            class="btn-secondary text-sm"
+            class="btn-secondary text-base sm:text-sm min-h-[44px]"
             :class="{ 'opacity-50 cursor-not-allowed': !canUndo }"
             title="Rückgängig (Ctrl+Z)"
+            aria-label="Rückgängig machen"
           >
             ↶
           </button>
@@ -30,9 +31,10 @@
             v-if="isCampaignLoaded"
             @click="redo"
             :disabled="!canRedo"
-            class="btn-secondary text-sm"
+            class="btn-secondary text-base sm:text-sm min-h-[44px]"
             :class="{ 'opacity-50 cursor-not-allowed': !canRedo }"
             title="Wiederholen (Ctrl+Y)"
+            aria-label="Wiederholen"
           >
             ↷
           </button>
@@ -43,6 +45,7 @@
             @click="showJsonPreview = true"
             class="btn-secondary text-sm"
             title="JSON Vorschau"
+            aria-label="JSON Vorschau anzeigen"
           >
             { }
           </button>
@@ -86,6 +89,7 @@
             <button
               @click="showJsonPreview = false"
               class="text-ink-light hover:text-ink dark:hover:text-ink-dark text-2xl leading-none"
+              aria-label="Schließen"
             >
               ×
             </button>

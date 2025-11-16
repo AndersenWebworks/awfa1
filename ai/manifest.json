@@ -1,8 +1,9 @@
 {
   "site": "andersenwebworks.github.io/awfa1",
-  "version": "v0.8",
-  "build": 8,
+  "version": "v1.0",
+  "build": 10,
   "changelog": [
+    "v1.0 🎉 MVP RELEASE - Production-Ready Interactive Fantasy Engine",
     "v0.8 feat: Production Polish - Keyboard shortcuts, Auto-save indicator, localStorage guards",
     "v0.7 feat: Auto-Save + Undo/Redo - Production-Ready Editor",
     "v0.6 fix: Polish & QA fixes (mobile JSON preview, save validation, better error messages)",

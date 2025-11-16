@@ -7,6 +7,13 @@
         </router-link>
 
         <div class="flex gap-2">
+          <button
+            v-if="isCampaignLoaded"
+            @click="handleSave"
+            class="btn-primary text-sm"
+          >
+            Speichern
+          </button>
           <button @click="handleExport" class="btn-secondary text-sm">
             Export
           </button>
@@ -180,7 +187,18 @@ const {
   deleteChoice,
   exportCampaign,
   importCampaign,
+  saveCampaign,
 } = editorStore
+
+// Handle save
+function handleSave() {
+  try {
+    saveCampaign()
+    alert('Geschichte gespeichert!\n\nSie finden Ihre Geschichte nun unter "Meine Geschichten" im Reader.')
+  } catch (error) {
+    alert('Fehler beim Speichern: ' + error.message)
+  }
+}
 
 // Handle export
 function handleExport() {
@@ -206,9 +224,9 @@ function handleImport(event) {
   reader.onload = (e) => {
     const success = importCampaign(e.target.result)
     if (success) {
-      alert('Campaign imported successfully!')
+      alert('Geschichte importiert!')
     } else {
-      alert('Failed to import campaign')
+      alert('Fehler beim Importieren')
     }
   }
   reader.readAsText(file)

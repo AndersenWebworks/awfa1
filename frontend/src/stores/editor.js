@@ -175,6 +175,59 @@ export const useEditorStore = defineStore('editor', () => {
     }
   }
 
+  // Save campaign to Personal Stories
+  function saveCampaign() {
+    if (!campaign.value) {
+      throw new Error('No campaign loaded to save')
+    }
+
+    // Import Personal Stories Store
+    const { usePersonalStoriesStore } = require('./personalStories')
+    const personalStoriesStore = usePersonalStoriesStore()
+
+    // Prepare story metadata for storage
+    const storyMetadata = {
+      id: campaign.value.id,
+      title: campaign.value.title,
+      author: campaign.value.author || 'You',
+      description: campaign.value.metadata?.description || '',
+      genre: campaign.value.metadata?.genre || ['Fantasy'],
+      tags: campaign.value.metadata?.tags || [],
+      difficulty: campaign.value.metadata?.difficulty || 'Unbekannt',
+      estimatedPlaytime: campaign.value.metadata?.estimatedPlaytime || 'Unbekannt',
+      endings: countEndings(campaign.value),
+      coverImage: null,
+      data: campaign.value,
+      stats: {
+        nodes: campaign.value.nodes?.length || 0,
+        choices: countChoices(campaign.value),
+        endings: countEndings(campaign.value),
+      },
+      isPersonal: true,
+    }
+
+    // Save to Personal Stories Store
+    personalStoriesStore.addPersonalStory(storyMetadata)
+
+    return true
+  }
+
+  // Helper: Count endings in campaign
+  function countEndings(campaignData) {
+    if (!campaignData.nodes) return 0
+    return campaignData.nodes.filter(node =>
+      !node.choices || node.choices.length === 0
+    ).length
+  }
+
+  // Helper: Count total choices in campaign
+  function countChoices(campaignData) {
+    if (!campaignData.nodes) return 0
+    return campaignData.nodes.reduce((total, node) =>
+      total + (node.choices?.length || 0), 0
+    )
+  }
+
   // Helper: Generate unique ID
   function generateId() {
     return 'node_' + Date.now() + '_' + Math.random().toString(36).substr(2, 9)
@@ -198,5 +251,6 @@ export const useEditorStore = defineStore('editor', () => {
     deleteChoice,
     exportCampaign,
     importCampaign,
+    saveCampaign,
   }
 })

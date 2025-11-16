@@ -19,7 +19,15 @@
       "Bash(git push)",
       "Bash(git push:*)",
       "Bash(gh run list:*)",
-      "Bash(curl:*)"
+      "Bash(curl:*)",
+      "Bash(git clean:*)",
+      "Bash(git rev-parse:*)",
+      "Skill(dice)",
+      "Skill(edge)",
+      "Skill(page)",
+      "Skill(serif)",
+      "Skill(syntax)",
+      "Bash(npm run build:*)"
     ],
     "deny": [],
     "ask": []

@@ -9,7 +9,7 @@ export default {
       // Mobile-first breakpoints (default Tailwind is already mobile-first)
       // Custom extensions for Reading Experience
       fontFamily: {
-        'serif': ['Goudy Bookletter 1911', 'Georgia', 'serif'], // For story text - vintage book feel
+        'serif': ['"Goudy Bookletter 1911"', 'Georgia', 'serif'], // For story text - vintage book feel
         'sans': ['Inter', 'system-ui', 'sans-serif'], // For UI
       },
       fontSize: {

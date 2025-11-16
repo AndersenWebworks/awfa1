@@ -1,0 +1,9 @@
+{
+  "site": "andersenwebworks.github.io/awfa1",
+  "version": "v0.2",
+  "build": 2,
+  "changelog": [
+    "v0.2 feat: GitHub Pages Migration + Deployment",
+    "v0.1 feat: Initial MVP Setup - Vue 3 + Vite + Tailwind"
+  ]
+}

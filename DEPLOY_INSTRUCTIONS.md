@@ -1,38 +1,89 @@
-# 🚀 MVP DEPLOY - Für Boss vom Handy aus!
+# 🚀 Deployment Instructions - GitHub Pages
 
-## ✅ Der Build ist FERTIG und im Repo!
+## ✅ Live Demo
 
-Die App ist gebaut und liegt in `/docs/` - bereit für GitHub Pages!
+**URL:** [https://andersenwebworks.github.io/awfa1/](https://andersenwebworks.github.io/awfa1/)
+
+Die App ist **live** und wird automatisch bei jedem Push deployed!
 
 ---
 
-## 📱 SO AKTIVIERST DU GITHUB PAGES (3 Schritte):
+## 🔄 Automatisches Deployment (GitHub Actions)
 
-### **Schritt 1: Gehe zu deinem GitHub Repo**
+### Wie es funktioniert:
+
+1. **Push zu `main` Branch** (oder `claude/*` Branches)
+2. **GitHub Actions startet automatisch** den Build-Workflow
+3. **Build:** Vue App wird gebaut (`npm run build` in `frontend/`)
+4. **Deploy:** `frontend/dist` wird zu GitHub Pages deployed
+5. **Live in ~2-3 Minuten**
+
+### Workflow-Datei:
+[`.github/workflows/deploy.yml`](.github/workflows/deploy.yml)
+
+---
+
+## 📱 GitHub Pages Setup (Einmalig - bereits erledigt ✅)
+
+Falls du es nochmal konfigurieren musst:
+
+### **Schritt 1: Gehe zu Settings → Pages**
 ```
-https://github.com/AndersenWebworks/awfa1
+https://github.com/AndersenWebworks/awfa1/settings/pages
 ```
 
-### **Schritt 2: Gehe zu Settings → Pages**
-1. Klick auf **"Settings"** (oben rechts im Repo)
-2. Scroll runter zu **"Pages"** (im linken Menü unter "Code and automation")
-
-### **Schritt 3: Enable GitHub Pages**
-1. Bei **"Source"**: Wähle **"Deploy from a branch"**
-2. Bei **"Branch"**: Wähle **`claude/placeholder-011CUWY9rvkcgzAvgNLszqB2`**
-3. Bei **"Folder"**: Wähle **`/docs`**
-4. Klick auf **"Save"**
+### **Schritt 2: Source einstellen**
+- **Source:** Wähle **"GitHub Actions"** (NICHT "Deploy from a branch")
+- **Save**
 
 ### **FERTIG!** 🎉
 
-GitHub braucht 1-2 Minuten zum Deployen.
+---
 
-Dann findest du deine URL auf der gleichen Seite:
-```
-https://andersenwebworks.github.io/awfa1/
+## 🛠️ Lokales Development
+
+### Setup:
+```bash
+cd frontend
+npm install
+npm run dev
 ```
 
-**Diese URL kannst du vom Handy öffnen!** 📱
+Öffne: `http://localhost:5173/`
+
+### Production Build testen:
+```bash
+cd frontend
+npm run build
+npm run preview
+```
+
+---
+
+## 🚀 Manueller Deploy
+
+Falls du den Workflow manuell triggern willst:
+
+1. Gehe zu: `https://github.com/AndersenWebworks/awfa1/actions`
+2. Workflow: **"Deploy to GitHub Pages"**
+3. **"Run workflow"** → Branch wählen → **"Run workflow"**
+
+---
+
+## 📦 Was wird deployed:
+
+- **Source:** `frontend/dist/` (gebaut von Vite)
+- **Base Path:** `/awfa1/` (konfiguriert in `vite.config.js`)
+- **Assets:** Mit Cache-Busting Hashes
+- **Size:** ~49 kB gzipped (sehr performant!)
+
+---
+
+## 🌐 Live URL
+
+**Production:** [https://andersenwebworks.github.io/awfa1/](https://andersenwebworks.github.io/awfa1/)
+
+**Mobil optimiert** - teste auf dem Handy! 📱
 
 ---
 

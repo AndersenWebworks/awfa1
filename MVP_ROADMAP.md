@@ -196,14 +196,16 @@
 
 | Milestone | Sessions | Status |
 |-----------|----------|--------|
-| 1. Setup | 1 | ⏳ Pending |
+| 1. Setup | 1 | ✅ **Completed** |
 | 2. Datenmodell | 0.5 | ⏳ Pending |
-| 3. Reader | 1 | ⏳ Pending |
-| 4. Editor | 1.5 | ⏳ Pending |
+| 3. Reader | 1 | ⏳ In Progress (Basis vorhanden) |
+| 4. Editor | 1.5 | ⏳ In Progress (Basis vorhanden) |
 | 5. Visual Tree (optional) | 1 | ⏳ Pending |
 | 6. Polish | 0.5 | ⏳ Pending |
 
 **Total:** 4-5 Sessions (ohne Visual Tree: 3.5 Sessions)
+
+**Live Demo:** [https://andersenwebworks.github.io/awfa1/](https://andersenwebworks.github.io/awfa1/) 🚀
 
 ---
 

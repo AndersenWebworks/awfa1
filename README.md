@@ -61,8 +61,9 @@ Backend:
 
 ## 📍 Aktueller Status
 
-**Phase:** Konzeption & Planung ✅
-**Nächster Schritt:** MVP Setup (siehe [MVP_ROADMAP.md](./MVP_ROADMAP.md))
+**Phase:** MVP Development - Milestone 1 ✅
+**Live Demo:** [https://andersenwebworks.github.io/awfa1/](https://andersenwebworks.github.io/awfa1/)
+**Nächster Schritt:** Reader & Editor Features (siehe [MVP_ROADMAP.md](./MVP_ROADMAP.md))
 
 ### Completed:
 - ✅ Vision definiert
@@ -70,11 +71,17 @@ Backend:
 - ✅ Core Principles festgelegt
 - ✅ Datenmodell entworfen
 - ✅ MVP Roadmap definiert
+- ✅ Vite + Vue 3 Projekt aufgesetzt
+- ✅ Tailwind CSS konfiguriert
+- ✅ Pinia State Management implementiert
+- ✅ Router & Basis-Views erstellt
+- ✅ GitHub Pages Deployment konfiguriert
+- ✅ Demo Stories erstellt
 
 ### Next:
-- [ ] Vite + Vue 3 Projekt aufsetzen
-- [ ] JSON Schema für Campaign/Story definieren
-- [ ] Basis-Komponenten erstellen
+- [ ] Reader View Features ausbauen
+- [ ] Editor View Features ausbauen
+- [ ] JSON Schema finalisieren
 
 ---
 
@@ -239,11 +246,31 @@ Eine lebendige Community von tausenden Autoren, Game Mastern und Spielern die:
 
 ## 🔗 Quick Links
 
+- **Live Demo:** [https://andersenwebworks.github.io/awfa1/](https://andersenwebworks.github.io/awfa1/) 🚀
 - **Core Principles:** [CORE_PRINCIPLES.md](./CORE_PRINCIPLES.md) ⭐
 - **The Team:** [TEAM.md](./TEAM.md) 🎲 ← **START HERE for Claude instances!**
 - **Vision:** [VISION.md](./VISION.md)
 - **Tech Concept:** [TECHNICAL_CONCEPT.md](./TECHNICAL_CONCEPT.md)
 - **MVP Roadmap:** [MVP_ROADMAP.md](./MVP_ROADMAP.md)
+- **Deploy Instructions:** [DEPLOY_INSTRUCTIONS.md](./DEPLOY_INSTRUCTIONS.md)
+
+---
+
+## 🚀 Deployment
+
+**Live URL:** [https://andersenwebworks.github.io/awfa1/](https://andersenwebworks.github.io/awfa1/)
+
+**Platform:** GitHub Pages mit GitHub Actions
+**Branch:** `main`
+**Build:** Automatisch bei jedem Push
+
+### Deploy Workflow:
+1. Push zu `main` oder `claude/*` Branch
+2. GitHub Actions baut Vue App (`npm run build`)
+3. Deployed automatisch zu GitHub Pages
+4. Live in ~2-3 Minuten
+
+Siehe [DEPLOY_INSTRUCTIONS.md](./DEPLOY_INSTRUCTIONS.md) für Details.
 
 ---
 

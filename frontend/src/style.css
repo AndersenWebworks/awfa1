@@ -27,11 +27,17 @@
 
 /* Custom component classes */
 @layer components {
-  /* Reader typography - Kindle-like */
+  /* Reader typography - read.gov inspired */
   .reader-text {
-    @apply font-serif text-lg leading-relaxed;
+    @apply font-serif text-reader-base leading-reader;
     @apply max-w-2xl mx-auto;
     @apply text-ink dark:text-ink-dark;
+    letter-spacing: 2px; /* read.gov letter-spacing */
+  }
+
+  /* Paragraph indentation for story text (like classic books) */
+  .reader-text p + p {
+    text-indent: 50px; /* read.gov paragraph indent */
   }
 
   /* Touch-optimized buttons - minimum 44x44px */

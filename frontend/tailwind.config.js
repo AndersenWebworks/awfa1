@@ -13,14 +13,17 @@ export default {
         'sans': ['Inter', 'system-ui', 'sans-serif'], // For UI
       },
       fontSize: {
-        // Reading-optimized sizes
+        // Reading-optimized sizes (based on read.gov standards)
         'reader-sm': '16px',
-        'reader-base': '18px',
-        'reader-lg': '20px',
-        'reader-xl': '22px',
+        'reader-base': '24px', // read.gov standard for paragraph text
+        'reader-lg': '28px',   // read.gov h2
+        'reader-xl': '36px',   // read.gov h1
       },
       lineHeight: {
-        'reader': '1.85', // Optimal for Goudy Bookletter (higher ascenders/descenders)
+        'reader': '1.0', // read.gov uses 24pt line-height for 24px text = 1.0
+      },
+      letterSpacing: {
+        'reader': '2px', // read.gov letter-spacing for readability
       },
       maxWidth: {
         'reader': '65ch', // Optimal line length for reading (50-75 chars)
@@ -28,7 +31,7 @@ export default {
       colors: {
         // Book-like color palette (literary design)
         'paper': '#FAF8F3',        // Warm cream (like book pages)
-        'ink': '#2D2520',          // Warm black (like ink)
+        'ink': '#666666',          // read.gov text color (softer on eyes)
         'ink-light': '#6B5D52',    // Lighter ink
         'sepia': '#8B7355',        // Aged ink
         'sepia-light': '#A67C52',  // Gold-brown accent
@@ -38,6 +41,9 @@ export default {
         // Dark mode (optional, for evening reading)
         'paper-dark': '#1E1915',
         'ink-dark': '#E8E3D8',
+      },
+      textIndent: {
+        'paragraph': '50px',       // read.gov paragraph indent
       }
     },
   },

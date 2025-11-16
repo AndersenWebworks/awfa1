@@ -1,5 +1,6 @@
 import { defineStore } from 'pinia'
 import { ref, computed } from 'vue'
+import { usePersonalStoriesStore } from './personalStories'
 
 /**
  * Editor Store - Manages campaign creation and editing
@@ -221,8 +222,7 @@ export const useEditorStore = defineStore('editor', () => {
       throw new Error('No campaign loaded to save')
     }
 
-    // Import Personal Stories Store
-    const { usePersonalStoriesStore } = require('./personalStories')
+    // Get Personal Stories Store
     const personalStoriesStore = usePersonalStoriesStore()
 
     // Prepare story metadata for storage

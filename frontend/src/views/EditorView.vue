@@ -7,6 +7,14 @@
         <div class="flex gap-2">
           <button
             v-if="isCampaignLoaded"
+            @click="showJsonPreview = true"
+            class="btn-secondary text-sm"
+            title="JSON Vorschau"
+          >
+            { }
+          </button>
+          <button
+            v-if="isCampaignLoaded"
             @click="handleSave"
             class="btn-primary text-sm"
           >
@@ -30,6 +38,36 @@
           </label>
         </div>
       </header>
+
+      <!-- JSON Preview Modal -->
+      <div
+        v-if="showJsonPreview"
+        class="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4"
+        @click.self="showJsonPreview = false"
+      >
+        <div class="bg-paper dark:bg-paper-dark rounded-lg shadow-xl max-w-4xl w-full max-h-[80vh] flex flex-col">
+          <div class="flex justify-between items-center p-4 border-b border-divider">
+            <h3 class="text-lg font-serif text-ink dark:text-ink-dark">Campaign JSON Preview</h3>
+            <button
+              @click="showJsonPreview = false"
+              class="text-ink-light hover:text-ink dark:hover:text-ink-dark text-2xl leading-none"
+            >
+              ×
+            </button>
+          </div>
+          <div class="flex-1 overflow-auto p-4">
+            <pre class="text-xs font-mono text-ink dark:text-ink-dark bg-shadow/20 dark:bg-paper-dark p-4 rounded border border-divider overflow-x-auto">{{ jsonPreview }}</pre>
+          </div>
+          <div class="flex justify-end gap-2 p-4 border-t border-divider">
+            <button @click="copyJsonToClipboard" class="btn-secondary text-sm">
+              In Zwischenablage kopieren
+            </button>
+            <button @click="showJsonPreview = false" class="btn-primary text-sm">
+              Schließen
+            </button>
+          </div>
+        </div>
+      </div>
 
       <!-- No Campaign State -->
       <div v-if="!isCampaignLoaded" class="text-center py-16">
@@ -244,6 +282,7 @@
 </template>
 
 <script setup>
+import { ref, computed } from 'vue'
 import { storeToRefs } from 'pinia'
 import { useEditorStore } from '../stores/editor'
 
@@ -262,6 +301,12 @@ const {
   importCampaign,
   saveCampaign,
 } = editorStore
+
+// JSON Preview state
+const showJsonPreview = ref(false)
+const jsonPreview = computed(() => {
+  return campaign.value ? JSON.stringify(campaign.value, null, 2) : ''
+})
 
 // Handle node ID change
 function handleNodeIdChange(event, oldId) {
@@ -349,6 +394,19 @@ function handleImport(event) {
 
   // Reset input
   event.target.value = ''
+}
+
+// Copy JSON to clipboard
+function copyJsonToClipboard() {
+  if (!jsonPreview.value) return
+
+  navigator.clipboard.writeText(jsonPreview.value)
+    .then(() => {
+      alert('JSON in Zwischenablage kopiert!')
+    })
+    .catch(() => {
+      alert('Fehler beim Kopieren')
+    })
 }
 </script>
 

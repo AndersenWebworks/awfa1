@@ -9,7 +9,7 @@ export default {
       // Mobile-first breakpoints (default Tailwind is already mobile-first)
       // Custom extensions for Reading Experience
       fontFamily: {
-        'serif': ['Lora', 'Georgia', 'serif'], // For reader - Kindle-like
+        'serif': ['Goudy Bookletter 1911', 'Georgia', 'serif'], // For story text - vintage book feel
         'sans': ['Inter', 'system-ui', 'sans-serif'], // For UI
       },
       fontSize: {
@@ -20,7 +20,7 @@ export default {
         'reader-xl': '22px',
       },
       lineHeight: {
-        'reader': '1.75', // Optimal for reading
+        'reader': '1.85', // Optimal for Goudy Bookletter (higher ascenders/descenders)
       },
       maxWidth: {
         'reader': '65ch', // Optimal line length for reading (50-75 chars)

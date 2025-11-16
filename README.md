@@ -1,36 +1,90 @@
-# Interactive Fantasy RPG Literature Engine
+# AWFA1 - Interactive Fantasy RPG Literature Engine
 
-> **"Das WordPress für interaktive Fantasy-Literatur"**
+> **"Kindle meets D&D" - Eine mobile-first Plattform für interaktive Fantasy-Geschichten**
 >
-> Eine mobile-first, open-source Plattform für interaktive Fantasy-Geschichten - Kindle meets D&D.
+> Erstelle und erlebe interaktive Fantasy-Literatur auf dem Smartphone - open source, frei teilbar, einfach zu nutzen.
+
+**Live Demo:** [https://andersenwebworks.github.io/awfa1/](https://andersenwebworks.github.io/awfa1/) 🚀
+
+**Current Version:** v0.6 (MVP near complete!)
 
 ---
 
 ## 🎯 Was ist das?
 
-Eine Engine, mit der **Autoren und Game Master** interaktive Fantasy-RPG-Kampagnen erstellen und **Spieler** diese wie ein E-Book lesen und erleben können - alles vom Smartphone aus.
+Eine Engine, mit der **Autoren** interaktive Fantasy-Geschichten erstellen und **Leser** diese wie ein E-Book erleben können - mit Entscheidungen, Verzweigungen und multiplen Enden.
 
-**Für Spieler:** Lies Fantasy-Bücher wie auf einem Kindle - aber lebe sie wie in einem Pen & Paper RPG.
+**Für Leser:** Lies Fantasy-Bücher wie auf einem Kindle - aber triff Entscheidungen die die Geschichte verändern.
 
-**Für Master:** Schreibe Fantasy-RPG-Kampagnen so einfach wie eine Geschichte - aber mit der Macht komplexer RPG-Systeme.
+**Für Autoren:** Schreibe verzweigte Geschichten so einfach wie in einem Editor - keine Programmierung nötig.
 
 ---
 
-## 📚 Dokumentation
+## ✨ Features (MVP v0.6)
 
-### Pflichtlektüre (in dieser Reihenfolge):
-1. **[CORE_PRINCIPLES.md](./CORE_PRINCIPLES.md)** - Die unverrückbaren Prinzipien (IMMER zuerst lesen!)
-2. **[TEAM.md](./TEAM.md)** - 🎲 Meet the Team: Syntax, Serif & Dice (NUTZE DAS TEAM!)
-3. **[VISION.md](./VISION.md)** - Die nicht-technische Vision
-4. **[TECHNICAL_CONCEPT.md](./TECHNICAL_CONCEPT.md)** - Technische Architektur & Datenmodell
-5. **[MVP_ROADMAP.md](./MVP_ROADMAP.md)** - Konkrete Entwicklungs-Milestones
+### 📖 **Reader (Lesemodus)**
+- ✅ **Immersive Reading Experience** - Kindle-ähnliche Typography, optimale Zeilenlänge
+- ✅ **Mobile-First Design** - Touch-optimiert, responsive auf allen Geräten
+- ✅ **Interaktive Choices** - Verzweigungen durch Entscheidungen
+- ✅ **Story Library** - Browse & play Stories, Import/Export
+- ✅ **Personal Stories** - Speichere deine eigenen Geschichten
+- ✅ **Progress Tracking** - Fortschritt wird automatisch gespeichert (LocalStorage)
+- ✅ **Clean UI** - Navigation verschwindet beim Lesen (volle Immersion)
 
-### Wichtig für zukünftige Entwickler/Claude-Instanzen:
-- Lies **CORE_PRINCIPLES.md** vor JEDER Entscheidung
-- Lies **TEAM.md** und NUTZE das Team (Syntax, Serif, Dice)
-- Antworte ALS das Team - verschiedene Perspektiven zeigen
-- Nutze den **Fokus-Test** (5 Fragen) vor jedem neuen Feature
-- Halte dich an die **MVP Roadmap** - kein Scope Creep!
+### ✍️ **Editor (Autorenmodus)**
+- ✅ **Visual Node Editor** - Side-by-Side Layout (Liste links, Editor rechts)
+- ✅ **Editable Node Names** - Lesbare IDs statt Timestamps (node-1, node-2, etc.)
+- ✅ **Choice Management** - Verzweigungen mit Target-Selection
+- ✅ **Title & Author Fields** - Metadata direkt editierbar
+- ✅ **JSON Preview** - Live-Vorschau mit Copy-to-Clipboard
+- ✅ **Export/Import** - Stories als JSON speichern & laden
+- ✅ **Save to Library** - Speichere in "Meine Geschichten"
+- ✅ **Validation & Error Handling** - Hilfreiche Fehlermeldungen
+
+---
+
+## 🚀 Schnellstart
+
+### Option 1: Live Demo nutzen
+1. Gehe zu [https://andersenwebworks.github.io/awfa1/](https://andersenwebworks.github.io/awfa1/)
+2. Klicke "Geschichten lesen" → Wähle eine Demo-Story
+3. Oder klicke "Geschichten erschaffen" → Erstelle deine eigene!
+
+### Option 2: Lokal entwickeln
+```bash
+# Clone repository
+git clone https://github.com/AndersenWebworks/awfa1.git
+cd awfa1/frontend
+
+# Install dependencies
+npm install
+
+# Start dev server
+npm run dev
+
+# Build for production
+npm run build
+```
+
+**Dev Server:** http://localhost:5173/
+**Build Output:** `frontend/dist/`
+
+---
+
+## 📱 Mobile-First Design
+
+**Alles funktioniert perfekt auf dem Smartphone:**
+- ✅ Touch-optimierte Buttons (min. 44x44px)
+- ✅ Responsive Layout (320px+)
+- ✅ Optimierte Typography für kleine Bildschirme
+- ✅ Side-by-Side Editor wird auf Mobile gestacked
+- ✅ Getestet auf 12+ Geräten (iPhone SE, Pixel, iPad, Desktop)
+
+**Reading Experience:**
+- Goudy Bookletter 1911 Font (Kindle-ähnlich)
+- Line-height: 1.8 (Desktop) / 1.75 (Mobile)
+- Max-width: 42rem (~65-75 Zeichen/Zeile - optimal)
+- Bottom padding für "breathing room"
 
 ---
 
@@ -39,239 +93,273 @@ Eine Engine, mit der **Autoren und Game Master** interaktive Fantasy-RPG-Kampagn
 ```
 Frontend (PWA):
 ├── Vue.js 3 (Composition API)
-├── Vite (Build Tool)
-├── Tailwind CSS (Styling)
+├── Vite (Build Tool, HMR)
+├── Tailwind CSS v3 (Styling)
 ├── Pinia (State Management)
-├── VueFlow (Tree Visualisierung)
-└── VueUse (Mobile Utilities)
+└── VueRouter (SPA Routing)
 
-Backend:
-├── Node.js + Express (REST API)
-├── PostgreSQL (Datenbank - später)
-└── JSON File Storage (MVP Start)
+Deployment:
+├── GitHub Pages
+├── GitHub Actions (Auto-Deploy)
+└── Vite Build Pipeline
 ```
 
 **Warum dieser Stack?**
-- Vue.js: Sanfte Lernkurve, perfekt für komplexe State
-- Node.js: JavaScript full-stack, keine Code-Duplizierung
-- Tailwind: Mobile-first by default
-- Details siehe: [TECHNICAL_CONCEPT.md](./TECHNICAL_CONCEPT.md)
+- **Vue 3:** Reactive, performant, sanfte Lernkurve
+- **Vite:** Blitzschnelles HMR, optimierte Builds
+- **Tailwind:** Mobile-first by default, rapid prototyping
+- **Pinia:** Vue 3 native, TypeScript ready
+- **No Backend (yet):** LocalStorage für MVP, später Cloud-Sync
 
 ---
 
-## 📍 Aktueller Status
+## 📊 MVP Status
 
-**Phase:** MVP Development - Milestone 1 ✅
-**Live Demo:** [https://andersenwebworks.github.io/awfa1/](https://andersenwebworks.github.io/awfa1/)
-**Nächster Schritt:** Reader & Editor Features (siehe [MVP_ROADMAP.md](./MVP_ROADMAP.md))
+**Version:** v0.6 (Build 6)
+**MVP Completion:** ~95%
 
-### Completed:
-- ✅ Vision definiert
-- ✅ Technisches Konzept erstellt
-- ✅ Core Principles festgelegt
-- ✅ Datenmodell entworfen
-- ✅ MVP Roadmap definiert
-- ✅ Vite + Vue 3 Projekt aufgesetzt
-- ✅ Tailwind CSS konfiguriert
-- ✅ Pinia State Management implementiert
-- ✅ Router & Basis-Views erstellt
-- ✅ GitHub Pages Deployment konfiguriert
-- ✅ Demo Stories erstellt
+### ✅ Completed Milestones:
+- **Milestone 1:** Projekt Setup ✅
+- **Milestone 2:** Datenmodell & JSON Schema ✅
+- **Milestone 3:** Basic Story Reader ✅
+- **Milestone 4:** Basic Story Editor ✅
+- **Milestone 6:** Polish & Testing (in progress) ✅
 
-### Next:
-- [ ] Reader View Features ausbauen
-- [ ] Editor View Features ausbauen
-- [ ] JSON Schema finalisieren
+### 📋 Remaining für MVP v1.0:
+- [ ] Final README polish (this file)
+- [ ] Comprehensive cross-device testing
+- [ ] Performance audit (Lighthouse 95+)
+- [ ] Accessibility review (optional)
 
----
-
-## 🎮 Die zwei Modi
-
-### 1. Editor (für Game Master & Autoren)
-- Visual Tree Editor (Drag & Drop Nodes)
-- Text schreiben wie in einem Notizbuch
-- Optional: Stats, Würfel, Inventar konfigurieren
-- Test-Modus: Story direkt spielen
-- Export/Import Stories (JSON)
-
-### 2. Reader (für Spieler)
-- Kindle-like Reading Experience
-- Elegante Typography, Dark Mode
-- Interaktive Choices
-- Optional: Character Stats, Inventar
-- Auto-Save Progress (LocalStorage)
+### ⏳ Post-MVP (Phase 2):
+- [ ] Stats System (optional für Autoren)
+- [ ] Dice Rolls & Conditions
+- [ ] Visual Tree Editor (VueFlow)
+- [ ] Backend & Cloud Storage
+- [ ] User Authentication
+- [ ] Story Discovery / Community
 
 ---
 
-## 🚀 MVP Ziel
+## 📂 Projekt-Struktur
 
-**Definition of Done:**
-Eine funktionierende Demo, in der du:
-1. Im **Editor** eine Story mit 5+ Nodes erstellen kannst
-2. Nodes verbinden und Text eingeben kannst
-3. Im **Reader** diese Story durchspielen kannst
-4. Choices treffen kannst die zu anderen Nodes führen
-5. Die Story als JSON exportieren/importieren kannst
-
-**Ohne** (kommt später):
-- Stats, Dice Rolls, Conditions
-- Backend, User Auth, Cloud Storage
-- Inventory System
-- Community Features
-
-**Timeline:** MVP in 2-3 Entwicklungs-Sessions
-
----
-
-## 📱 Mobile-First Design Principles
-
-### Für den Reader:
-- Serifenschrift (Merriweather, Lora)
-- Optimal Line Length (50-75 chars)
-- Touch-optimierte Buttons (min 44x44px)
-- Swipe Gestures
-- Dark Mode (AMOLED black)
-
-### Für den Editor:
-- Große Touch Targets
-- Drag & Drop mit Touch
-- Mobile Keyboard optimiert
-- Quick Actions
-- Intuitive Gesten
+```
+awfa1/
+├── frontend/                 # Vue.js App
+│   ├── src/
+│   │   ├── views/
+│   │   │   ├── HomeView.vue        # Landing Page
+│   │   │   ├── ReaderView.vue      # Story Reader
+│   │   │   └── EditorView.vue      # Story Editor
+│   │   ├── components/
+│   │   │   ├── StoryLibrary.vue    # Library Browser
+│   │   │   ├── ReaderHeader.vue    # Minimal Reader Nav
+│   │   │   └── EndingScreen.vue    # Story Endings
+│   │   ├── stores/
+│   │   │   ├── story.js            # Reader State
+│   │   │   ├── editor.js           # Editor State
+│   │   │   └── personalStories.js  # User's Stories
+│   │   └── router/index.js
+│   ├── public/                     # Public assets
+│   └── package.json
+│
+├── docs/                     # GitHub Pages Deploy Target
+├── ai/
+│   └── manifest.json         # Version Tracking
+│
+├── CORE_PRINCIPLES.md        # ⭐ Heilige Prinzipien
+├── VISION.md                 # Vision & USP
+├── TECHNICAL_CONCEPT.md      # Architektur
+├── MVP_ROADMAP.md            # Milestones
+└── README.md                 # Diese Datei
+```
 
 ---
 
-## 🧭 Entwicklungs-Kompass
+## 🎮 Wie es funktioniert
 
-**Bei jeder Entscheidung fragen:**
-> "Würde das helfen, wenn jemand abends im Bett auf dem Handy eine Fantasy-Geschichte schreibt oder spielt?"
+### Als Leser:
+1. **Browse Library** → Wähle eine Story aus "Alle Geschichten"
+2. **Read** → Lies den Text, treffe Entscheidungen
+3. **Navigate** → Folge deinen Choices durch die Story
+4. **Progress Auto-Save** → Dein Fortschritt wird gespeichert
+5. **Back Button** → Zurück zur Library
+
+### Als Autor:
+1. **Create Story** → Klicke "Neue Geschichte erstellen"
+2. **Edit Metadata** → Titel & Autor eingeben
+3. **Add Nodes** → Erstelle Abschnitte (Nodes) mit Text
+4. **Add Choices** → Verzweigungen mit Ziel-Auswahl
+5. **Preview JSON** → Live-Vorschau deiner Story-Struktur
+6. **Save/Export** → Speichere in "Meine Geschichten" oder exportiere als JSON
+
+---
+
+## 📖 Story Format (JSON)
+
+```json
+{
+  "id": "story-123",
+  "title": "Dein Abenteuer",
+  "author": "Dein Name",
+  "version": "1.0.0",
+  "metadata": {
+    "description": "Eine epische Fantasy-Geschichte",
+    "genre": ["fantasy"],
+    "tags": []
+  },
+  "startNodeId": "start",
+  "nodes": [
+    {
+      "id": "start",
+      "type": "story",
+      "content": {
+        "text": "Du erwachst in einem dunklen Wald..."
+      },
+      "choices": [
+        {
+          "id": "choice_1",
+          "text": "Nach Norden gehen",
+          "targetNode": "north"
+        },
+        {
+          "id": "choice_2",
+          "text": "Nach Süden gehen",
+          "targetNode": "south"
+        }
+      ]
+    }
+  ]
+}
+```
+
+**Validation:**
+- ✅ Mindestens 1 Node
+- ✅ Titel erforderlich
+- ✅ startNodeId muss existieren (auto-fix auf ersten Node)
+- ✅ Choices können leer sein (= Ende der Geschichte)
+
+---
+
+## 🧭 Entwicklungs-Philosophie
+
+### CORE PRINCIPLES:
+1. **Mobile-First ist nicht verhandelbar**
+2. **Lesefreundlichkeit vor Gaming-UI**
+3. **Flexibilität ohne Zwang**
+4. **Writer-Friendly vor Developer-Friendly**
+5. **Open Source & Community**
+
+**Fokus-Test vor jedem Feature:**
+> "Hilft es beim Schreiben oder Lesen einer Fantasy-Geschichte auf dem Handy?"
 
 Wenn NEIN → weglassen.
 
-**Die 5 Prinzipien prüfen:**
-1. Mobile-First ist nicht verhandelbar ✅
-2. Lesefreundlichkeit vor Gaming-UI ✅
-3. Flexibilität ohne Zwang ✅
-4. Writer-Friendly vor Developer-Friendly ✅
-5. Open Source & Community ✅
+Details: [CORE_PRINCIPLES.md](./CORE_PRINCIPLES.md)
 
 ---
 
-## 📂 Projekt-Struktur (geplant)
+## 🤝 Für Entwickler
 
-```
-/
-├── frontend/              # Vue.js PWA
-│   ├── src/
-│   │   ├── views/
-│   │   │   ├── EditorView/    # Story Editor
-│   │   │   └── ReaderView/    # Story Reader
-│   │   ├── components/        # Shared Components
-│   │   └── stores/            # Pinia Stores
-│   └── public/
-│
-├── backend/               # Node.js API (später)
-│   ├── src/
-│   │   ├── routes/
-│   │   ├── models/
-│   │   └── services/
-│   └── package.json
-│
-├── docs/                  # Dokumentation
-├── examples/              # Example Campaigns
-│
-├── CORE_PRINCIPLES.md     # ⭐ Die heiligen Prinzipien
-├── VISION.md              # Vision & Zielgruppe
-├── TECHNICAL_CONCEPT.md   # Technisches Konzept
-├── MVP_ROADMAP.md         # Entwicklungs-Milestones
-└── README.md              # Diese Datei
+### Setup:
+```bash
+cd frontend
+npm install
+npm run dev
 ```
 
+### Build & Deploy:
+```bash
+npm run build            # Build zu frontend/dist/
+cp -r dist/* ../docs/    # Copy to GitHub Pages dir
+git add -A
+git commit -m "deploy: v0.x"
+git push                 # GitHub Actions deployt automatisch
+```
+
+### Code-Stil:
+- Vue 3 Composition API (`<script setup>`)
+- Tailwind CSS (utility-first)
+- Pinia Stores (composable state)
+- DRY, SSOT, Clean Architecture
+- Mobile-First (test auf echten Geräten!)
+
+### Before PR:
+1. Test auf Mobile (real device!)
+2. Check Lighthouse Score (95+ target)
+3. Validate gegen CORE_PRINCIPLES
+4. Update manifest.json version
+
 ---
 
-## 🤝 Für zukünftige Entwickler
+## 📜 Changelog
 
-### Bevor du anfängst:
-1. Lies **alle Docs** in der oben genannten Reihenfolge
-2. Verstehe die **5 Core Principles**
-3. Halte dich an die **MVP Roadmap**
-4. Nutze den **Fokus-Test** bei Unsicherheit
+**v0.6** (Current) - Polish & QA
+- Mobile JSON preview fix
+- Save validation
+- Better error messages
 
-### Beim Entwickeln:
-- Mobile-First (teste auf echtem Smartphone!)
-- Einfache Stories dürfen nicht komplexer werden
-- Lesefreundlichkeit > Gaming-Features
-- Writer-Friendly UI (keine technischen Begriffe)
+**v0.5** - Milestone 4 Complete
+- JSON live preview modal
+- ES module fix
 
-### Bei Feature-Requests:
-- Prüfe gegen **CORE_PRINCIPLES.md**
-- Nutze den **Fokus-Test** (5 Fragen)
-- Wenn Zweifel: Lass es weg (später hinzufügen ist leichter)
+**v0.4** - Editor UX Overhaul
+- Editable node names
+- Side-by-side layout
+- Title/Author fields
+
+**v0.3** - Reader Immersion
+- Library vs Reading mode distinction
+- Nav hiding in reading mode
+- Bottom padding
+
+**v0.2** - GitHub Pages Deploy
+**v0.1** - Initial MVP Setup
+
+Details: `ai/manifest.json`
 
 ---
 
-## 🎯 Langfristige Vision
-
-Eine lebendige Community von tausenden Autoren, Game Mastern und Spielern die:
-- Interaktive Fantasy-Literatur erstellen und teilen
-- Von einfachen Stories bis komplexen RPG-Welten
-- Alles open source, kostenlos und remixbar
-- Eine neue Form der Fantasy-Literatur erschaffen
+## 🎯 Vision
 
 **"Das WordPress für interaktive Fantasy-Literatur"**
 
----
-
-## 📝 Notizen für Claude-Instanzen
-
-### Context für neue Sessions:
-1. Lies immer zuerst **CORE_PRINCIPLES.md**
-2. Lies **TEAM.md** und werde Syntax, Serif & Dice 🎲
-3. Prüfe **MVP_ROADMAP.md** für aktuellen Status
-4. Halte dich an die **Definition of Done** im Roadmap
-5. Kein Feature Creep - MVP first!
-
-### Bei Unsicherheit:
-- Frage den User, statt anzunehmen
-- Prüfe gegen die 5 Core Principles
-- Nutze den Fokus-Test
-- Im Zweifel: einfacher ist besser
-
-### Wichtige Entscheidungen:
-- Datenmodell siehe **TECHNICAL_CONCEPT.md** Zeile 52-205
-- MVP Scope siehe **TECHNICAL_CONCEPT.md** Zeile 260-278
-- Progressive Enhancement siehe **TECHNICAL_CONCEPT.md** Zeile 284-334
+Eine lebendige Community von Autoren und Lesern die:
+- Interaktive Fantasy-Geschichten erstellen & teilen
+- Von einfachen "Choose Your Own Adventure" bis komplexen RPG-Welten
+- Alles open source, kostenlos, remixbar
+- Eine neue Form der Fantasy-Literatur erschaffen
 
 ---
 
-## 🔗 Quick Links
+## 📝 Team
+
+Entwickelt mit Hilfe von:
+- **Syntax** (Tech Lead) - Code Architecture
+- **Serif** (UX/UI Designer) - Typography & Mobile Experience
+- **Dice** (Product Manager) - Scope & Vision
+- **Page** (Lead Playtester) - User Voice
+- **Edge** (QA Lead) - Testing & Quality
+
+Siehe: [.claude/CLAUDE.md](.claude/CLAUDE.md)
+
+---
+
+## 📄 Lizenz
+
+Open Source (noch keine Lizenz gewählt)
+
+---
+
+## 🔗 Links
 
 - **Live Demo:** [https://andersenwebworks.github.io/awfa1/](https://andersenwebworks.github.io/awfa1/) 🚀
+- **Repository:** [github.com/AndersenWebworks/awfa1](https://github.com/AndersenWebworks/awfa1)
 - **Core Principles:** [CORE_PRINCIPLES.md](./CORE_PRINCIPLES.md) ⭐
-- **The Team:** [TEAM.md](./TEAM.md) 🎲 ← **START HERE for Claude instances!**
 - **Vision:** [VISION.md](./VISION.md)
 - **Tech Concept:** [TECHNICAL_CONCEPT.md](./TECHNICAL_CONCEPT.md)
 - **MVP Roadmap:** [MVP_ROADMAP.md](./MVP_ROADMAP.md)
-- **Deploy Instructions:** [DEPLOY_INSTRUCTIONS.md](./DEPLOY_INSTRUCTIONS.md)
 
 ---
 
-## 🚀 Deployment
-
-**Live URL:** [https://andersenwebworks.github.io/awfa1/](https://andersenwebworks.github.io/awfa1/)
-
-**Platform:** GitHub Pages mit GitHub Actions
-**Branch:** `main`
-**Build:** Automatisch bei jedem Push
-
-### Deploy Workflow:
-1. Push zu `main` oder `claude/*` Branch
-2. GitHub Actions baut Vue App (`npm run build`)
-3. Deployed automatisch zu GitHub Pages
-4. Live in ~2-3 Minuten
-
-Siehe [DEPLOY_INSTRUCTIONS.md](./DEPLOY_INSTRUCTIONS.md) für Details.
-
----
-
-**Let's build something beautiful.** 📖✨
+**Let's build the future of interactive Fantasy literature.** 📖✨
